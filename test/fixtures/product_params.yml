@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  key: MyString
+  name: MyString
+  type: 
+  description: MyString
+  constraint: MyString
+  mandatory: false
+  value: MyText
+
+two:
+  key: MyString
+  name: MyString
+  type: 
+  description: MyString
+  constraint: MyString
+  mandatory: false
+  value: MyText

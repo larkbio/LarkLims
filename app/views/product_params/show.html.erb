@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Key:</strong>
+  <%= @product_param.key %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @product_param.name %>
+</p>
+
+<p>
+  <strong>ParamType:</strong>
+  <%= @product_param.paramtype %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @product_param.description %>
+</p>
+
+<p>
+  <strong>Constraint:</strong>
+  <%= @product_param.constraint %>
+</p>
+
+<p>
+  <strong>Mandatory:</strong>
+  <%= @product_param.mandatory %>
+</p>
+
+<p>
+  <strong>Value:</strong>
+  <%= @product_param.value %>
+</p>
+
+<%= link_to 'Edit', edit_product_product_param_path(@product, @product_param) %> |
+<%= link_to 'Back', product_product_params_path(@product) %>

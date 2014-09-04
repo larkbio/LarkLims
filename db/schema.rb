@@ -11,7 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140903102750) do
+ActiveRecord::Schema.define(version: 20140903121642) do
+
+  create_table "product_params", force: true do |t|
+    t.string   "key"
+    t.string   "name"
+    t.string   "paramtype"
+    t.string   "description"
+    t.string   "constraint"
+    t.boolean  "mandatory"
+    t.text     "value"
+    t.integer  "product_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "product_params", ["product_id"], name: "index_product_params_on_product_id"
 
   create_table "products", force: true do |t|
     t.string   "name"
