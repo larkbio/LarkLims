@@ -44,10 +44,10 @@ ActiveRecord::Schema.define(version: 20140904151901) do
     t.integer  "product_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "orders_id"
+    t.integer  "order_id"
   end
 
-  add_index "product_params", ["orders_id"], name: "index_product_params_on_orders_id"
+  add_index "product_params", ["order_id"], name: "index_product_params_on_order_id"
   add_index "product_params", ["product_id"], name: "index_product_params_on_product_id"
 
   create_table "products", force: true do |t|

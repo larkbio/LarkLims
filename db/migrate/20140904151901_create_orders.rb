@@ -19,7 +19,7 @@ class CreateOrders < ActiveRecord::Migration
     end
 
     change_table :product_params do |t|
-      t.references :orders, index: true
+      t.references :order, index: true
     end
   end
 end

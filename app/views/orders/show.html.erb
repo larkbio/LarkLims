@@ -1,5 +1,11 @@
 <p id="notice"><%= notice %></p>
 
+
+<p>
+    <strong>Product:</strong>
+    <%= @order.product.name %>
+</p>
+
 <p>
   <strong>Order date:</strong>
   <%= @order.order_date %>
@@ -59,6 +65,21 @@
   <strong>Place:</strong>
   <%= @order.place %>
 </p>
+
+<hr/>
+
+<p>
+    <strong>Product specific parameters</strong>
+</p>
+
+<% for par in @order.product_params %>
+<p>
+    <strong><%= par.name %></strong>
+    ( <%= par.description %> ):
+    <%= par.value %>
+
+</p>
+<% end %>
 
 <%= link_to 'Edit', edit_order_path(@order) %> |
 <%= link_to 'Back', orders_path %>
