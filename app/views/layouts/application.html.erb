@@ -1,14 +1,54 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>LarkLims</title>
+  <title><%= yield(:title) %></title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-<%= yield %>
+
+<div class="wrapper">
+    <div class="header">
+        <div class="container clearfix">
+
+            <div class="header_element theme_background">
+                <div id="home_icon" class="pictogram_image lark_pictogram_image">
+                </div>
+            </div>
+
+            <div class="site-search">
+                <form>
+                    <input type="text">
+                </form>
+            </div>
+            <ul class="nav-left">
+                <li class="header-nav-item">
+                    <%= link_to 'Products', controller: 'products' %>
+                </li>
+                <li class="header-nav-item">
+                    <%= link_to 'Orders', controller: 'orders' %>
+                </li>
+            </ul>
+            <ul class="nav-right">
+                <li class="header-nav-item">
+                    <span class="username">bdomokos</span>
+                </li>
+                <li class="header-nav-item">
+                    <i class="fa fa-cog"></i>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+    <div class="content">
+        <%= yield %>
+    </div>
+</div>
 
 </body>
 </html>
+
+
+

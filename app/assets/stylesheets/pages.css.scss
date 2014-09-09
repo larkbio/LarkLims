@@ -1,3 +1,204 @@
 // Place all the styles related to the pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+$hover_color: #4183c4;
+$default_font_color: #333333;
+$header_bg_color: whitesmoke;
+
+$colorHighlight: #1BA0E1;
+$colorDoubleHighlight: #1378A8;
+$colorTextOnHighlight: #FFFFFF;
+$colorTextOnHighlightHover: #FFFFFF;
+//$colorDoubleHighlight: #00FF00;
+$test: #f5f5f5;
+
+
+html {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  display: block;
+  min-width: 1020px;
+  font: 13px/1.4 Helvetica, arial, freesans, clean, sans-serif;
+  color: $default_font_color;
+  background-color: #fff;
+}
+
+.header {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  min-width: 1000px;
+  background-color: whitesmoke;
+  border-bottom: 1px solid $header_bg_color;
+  display: block;
+
+  font-weight: bold;
+}
+
+//.container {
+//  width: 980px;
+//  margin-left: auto;
+//  margin-right: auto;
+//}
+.clearfix::before {
+  display: table;
+  content: "";
+}
+.clearfix::after {
+  display: table;
+  clear: both;
+  content: "";
+}
+
+.header_element {
+  float: left;
+}
+//.theme_background_highlight a {
+//  color: $colorHighlight;
+//}
+//.theme_background_highlight a:hover {
+//  color: $colorDoubleHighlight;
+//}
+.theme_background {
+  background: $default_font_color;
+  color: $colorTextOnHighlight !important;
+}
+.theme_background:hover {
+  background: $hover_color;
+  color: $colorTextOnHighlightHover !important;
+}
+
+/*
+.theme_background_highlight a {
+  color: $colorTextOnHighlight;
+}
+.theme_background_highlight a:hover {
+  color: $colorTextOnHighlightHover !important;
+}
+*/
+.pictogram_image {
+  height: 28px;
+  width: 28px;
+  margin: 0px;
+  float: left;
+  vertical-align: top;
+  align: left;
+}
+.lark_pictogram_image {
+  background: url("lark_silhouette_28x28.png") 28px 28px no-repeat;
+  background-position: left top;
+//  height: 28px;
+//  width: 28px;
+//  background: url("lark_28x28_white.png") 28px 28px no-repeat;
+}
+.pictogram_sh {
+    display: block;
+    width: 28px;
+//    text-align: center;
+//    padding-top: 100px;
+//    height: 40px;
+    overflow: hidden;
+}
+
+
+
+/*
+span.larkicon {
+  float:left;
+  width: 28px;
+  height: 28px;
+  background: url("lark_28x28_white.png");
+  color: $default_font_color;
+}
+
+span.larkicon:hover {
+  background-color: $hover_color;
+}
+*/
+
+
+div.site-search {
+  position: relative;
+  float: left;
+}
+
+div.site-search form {
+  position: relative;
+  float: left;
+  width: 360px;
+  margin-right: 10px;
+}
+
+div.site-search input {
+  position: relative;
+  width: 100%;
+//  min-height: 28px;
+  padding: 4px 20px 4px 8px;
+  font-size: 12px;
+  margin-left: 6px;
+  margin-right: 6px;
+
+  vertical-align: middle;
+  background-color: #fff;
+  background-repeat: no-repeat;
+  background-position: right center;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  outline: none;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.075);
+  font: 13px/1.4 Helvetica, arial, freesans, clean, sans-serif;
+}
+
+div.container {
+  width: 980px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+div.container ul {
+    margin-top: 0;
+    margin-bottom: 0;
+
+    list-style: none;
+}
+
+ul.nav-left {
+  display: block;
+  padding: 0px 2px 0 28px;
+  float: left;
+}
+
+ul.nav-right {
+  float: right;
+}
+
+
+
+li.header-nav-item {
+  float: left;
+  list-style: none;
+  padding: 4px 8px 4px 8px;
+
+}
+
+li.header-nav-item span:hover {
+  color: $hover_color;
+}
+
+li.header-nav-item i:hover {
+  color: $hover_color;
+}
+
+li.header-nav-item a {
+  display: inline;
+  text-decoration: none;
+}
+li.header-nav-item a:visited {
+  color: $default_font_color;
+}
+li.header-nav-item a:hover {
+  color: $hover_color;
+  background-color: $header_bg_color;
+}
