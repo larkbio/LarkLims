@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title><%= yield(:title) %></title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
+    <title><%= yield(:title) %></title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
 </head>
 <body>
 
@@ -32,23 +32,38 @@
                 </li>
             </ul>
             <ul class="nav-right">
-                <li class="header-nav-item">
-                    <span class="username">bdomokos</span>
-                </li>
+                <% if current_user %>
+                    <li class="header-nav-item">
+                        <%= link_to edit_user_url(current_user.id) do %>
+                        <span class="username">bdomokos</span>
+                        <% end %>
+                    </li>
+                <% end %>
                 <li class="header-nav-item">
                     <i class="fa fa-cog"></i>
                 </li>
+                <% if current_user %>
+                    <li class="header-nav-item">
+                        <%= link_to logout_path, :method => 'post' do %>
+                            <i class="fa fa-sign-out"></i>
+                        <% end %>
+                    </li>
+                <% end %>
+
 
             </ul>
         </div>
     </div>
     <div class="content">
         <%= yield %>
+
+        <div>
+            <p id="notice"><%= flash[:notice] %></p>
+            <p id="alert"><%= flash[:alert] %></p>
+        </div>
     </div>
 </div>
 
 </body>
 </html>
-
-
 

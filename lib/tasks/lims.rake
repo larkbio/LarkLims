@@ -12,6 +12,11 @@ namespace :lims do
     p.product_params.create(key: 'species_name', name: 'Species', description: "Target organism",
                             paramtype: :string, constraint: '', mandatory: false, value: '')
     p.save!
+    u = User.create(name: 'admin',
+                    email: 'admin@admin.hu',
+                    password: 'admin',
+                    password_confirmation: 'admin',
+                    admin: true)
     o = Order.create(order_date: '',
                      catalog_number: '',
                      price: 1234.0,
@@ -22,7 +27,9 @@ namespace :lims do
                      url: 'https://bioinfo.appliedbiosystems.com/genome-database/details/gene-expression/Mm00801462_m1',
                      ordered_from: 'ABi',
                      status: 0,
-                     product: p)
+                     product: p,
+                     user_id: u.id)
+
 
   end
 
