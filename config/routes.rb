@@ -8,14 +8,15 @@ Rails.application.routes.draw do
     resources :product_params
   end
 
-  get 'pages/index'
+  get 'pages/dashboard'
+  get 'pages/browser'
   #get 'login' => 'user_sessions#new', :as => :login
   #post 'logout' => 'user_sessions#destroy', :as => :logout
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'pages#index'
+  root 'pages#dashboard'
   #root :to => 'users#index'
   resources :user_sessions
 

@@ -1,4 +1,8 @@
 class PagesController < ApplicationController
-  def index
+  def dashboard
+  end
+
+  def browser
+
   end
 end

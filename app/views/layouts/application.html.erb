@@ -25,17 +25,16 @@
             </div>
             <ul class="nav-left">
                 <li class="header-nav-item">
-                    <%= link_to 'Products', controller: 'products' %>
+                    <%= link_to 'Browse', controller: 'pages', action: 'browser' %>
                 </li>
-                <li class="header-nav-item">
-                    <%= link_to 'Orders', controller: 'orders' %>
-                </li>
+
+
             </ul>
             <ul class="nav-right">
                 <% if current_user %>
                     <li class="header-nav-item">
                         <%= link_to edit_user_url(current_user.id) do %>
-                        <span class="username">bdomokos</span>
+                        <span class="header-nav-item">bdomokos</span>
                         <% end %>
                     </li>
                 <% end %>
@@ -54,7 +53,8 @@
             </ul>
         </div>
     </div>
-    <div class="content">
+    <div class="content clearfix">
+
         <%= yield %>
 
         <div>

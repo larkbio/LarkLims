@@ -5,6 +5,7 @@
 $hover_color: #4183c4;
 $default_font_color: #333333;
 $header_bg_color: whitesmoke;
+$header_border_color: #e5e5e5;
 
 $colorHighlight: #1BA0E1;
 $colorDoubleHighlight: #1378A8;
@@ -26,22 +27,21 @@ body {
   background-color: #fff;
 }
 
+
+// Header layout
+
+
 .header {
   padding-top: 10px;
   padding-bottom: 10px;
   min-width: 1000px;
   background-color: whitesmoke;
-  border-bottom: 1px solid $header_bg_color;
+  border-bottom: 1px solid $header_border_color;
   display: block;
 
   font-weight: bold;
 }
 
-//.container {
-//  width: 980px;
-//  margin-left: auto;
-//  margin-right: auto;
-//}
 .clearfix::before {
   display: table;
   content: "";
@@ -55,12 +55,7 @@ body {
 .header_element {
   float: left;
 }
-//.theme_background_highlight a {
-//  color: $colorHighlight;
-//}
-//.theme_background_highlight a:hover {
-//  color: $colorDoubleHighlight;
-//}
+
 .theme_background {
   background: $default_font_color;
   color: $colorTextOnHighlight !important;
@@ -70,14 +65,6 @@ body {
   color: $colorTextOnHighlightHover !important;
 }
 
-/*
-.theme_background_highlight a {
-  color: $colorTextOnHighlight;
-}
-.theme_background_highlight a:hover {
-  color: $colorTextOnHighlightHover !important;
-}
-*/
 .pictogram_image {
   height: 28px;
   width: 28px;
@@ -89,34 +76,13 @@ body {
 .lark_pictogram_image {
   background: url("lark_silhouette_28x28.png") 28px 28px no-repeat;
   background-position: left top;
-//  height: 28px;
-//  width: 28px;
-//  background: url("lark_28x28_white.png") 28px 28px no-repeat;
 }
 .pictogram_sh {
     display: block;
     width: 28px;
-//    text-align: center;
-//    padding-top: 100px;
-//    height: 40px;
+
     overflow: hidden;
 }
-
-
-
-/*
-span.larkicon {
-  float:left;
-  width: 28px;
-  height: 28px;
-  background: url("lark_28x28_white.png");
-  color: $default_font_color;
-}
-
-span.larkicon:hover {
-  background-color: $hover_color;
-}
-*/
 
 
 div.site-search {
@@ -134,7 +100,6 @@ div.site-search form {
 div.site-search input {
   position: relative;
   width: 100%;
-//  min-height: 28px;
   padding: 4px 20px 4px 8px;
   font-size: 12px;
   margin-left: 6px;
@@ -150,6 +115,8 @@ div.site-search input {
   box-shadow: inset 0 1px 2px rgba(0,0,0,0.075);
   font: 13px/1.4 Helvetica, arial, freesans, clean, sans-serif;
 }
+
+
 
 div.container {
   width: 980px;
@@ -202,3 +169,234 @@ li.header-nav-item a:hover {
   color: $hover_color;
   background-color: $header_bg_color;
 }
+
+
+.right {
+  float: right;
+}
+.left {
+  float: left;
+}
+
+
+
+.contenthead {
+  position: relative;
+  margin-bottom: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #eee;
+}
+.contenthead span {
+  color: $hover_color;
+  font-size: 20px;
+  font-weight: normal;
+  line-height: 28px;
+}
+.contenthead-spaceonly {
+  position: relative;
+  margin-bottom: 20px;
+
+  padding-bottom: 20px;
+}
+
+// DASHBOARD
+
+.user-fullname {
+  display: block;
+  overflow: hidden;
+  width: 100%;
+  font-size: 26px;
+  line-height: 30px;
+  text-overflow: ellipsis;
+}
+.username {
+  display: block;
+  overflow: hidden;
+  width: 100%;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 24px;
+  color: #666;
+  text-overflow: ellipsis;
+}
+.content {
+  width: 980px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.columns {
+  margin-left: -10px;
+  margin-right: -10px;
+}
+
+.column {
+  float: left;
+  padding-left: 10px;
+  padding-right: 10px;
+  box-sizing: border-box;
+}
+.one-fourth {
+  width: 25%;
+}
+.three-fourths {
+  width: 75%;
+}
+.dashboard-content {
+  min-height: 345px;
+}
+
+.activity-list-header {
+  margin: 0 0 15px;
+  color: #666;
+  border-bottom: 1px solid #ddd;
+}
+.activity-list-header-item {
+display: inline-block;
+padding: 8px 12px 7px;
+font-size: 14px;
+line-height: 20px;
+}
+
+.activities {
+  float: none;
+  width: auto;
+}
+
+.activities .activity:first-child {
+  border-top: 0;
+}
+.activities .activity {
+  position: relative;
+  padding: 0 0 1em 45px;
+  overflow: hidden;
+  border-top: 1px solid #f1f1f1;
+}
+
+.body {
+  font: 13px/1.4 Helvetica, arial, freesans, clean, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+  color: #333333;
+}
+
+.activity-icon {
+  position: absolute;
+  top: 14px;
+  left: 0;
+  width: 32px;
+  height: 32px;
+  padding: 3px;
+  color: #bbb;
+}
+
+.activity-time {
+  font-size: 12px;
+  color: #bbb;
+}
+
+.activity-title {
+  font-weight: bold;
+  font-size: 14px;
+}
+.activity-title a {
+  color: #4183c4;
+
+  cursor: pointer;
+}
+.activity-title a:hover {
+  color: #4183c4;
+  text-decoration: underline;
+  background-color: #fff;
+}
+
+.activity-details {
+  color: #666;
+}
+
+
+
+
+// BROWSER
+
+.button {
+  position: relative;
+  display: inline-block;
+  padding: 7px 12px;
+  font-size: 13px;
+  font-weight: bold;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  border: 1px solid #d5d5d5;
+  border-radius: 3px;
+}
+.button.primary {
+  color: #fff;
+  text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+  background-color: #60b044;
+  background-image: linear-gradient(#8add6d, #60b044);
+  background-repeat: repeat-x;
+  border-color: #5ca941;
+}
+.browser-subnav-item+.browser-subnav-item {
+  margin-left: -1px;
+}
+.browser-subnav-item:first-child {
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+.browser-subnav-item:last-child {
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+.browser-subnav-item {
+  position: relative;
+  float: left;
+  padding: 7px 14px;
+  font-weight: bold;
+  color: #666;
+  border: 1px solid #e5e5e5;
+  cursor: pointer;
+}
+
+.browser-subnav-item.selected {
+  z-index: 2;
+  color: #fff;
+  background-color: #4183c4;
+  border-color: #4183c4;
+}
+.browser-subnav-item.selected:hover {
+
+  color: #fff;
+  background-color: #4183c4;
+}
+.browser-subnav-item:hover {
+  color: #666;
+  background-color: #f5f5f5;
+}
+/*
+
+.dashboard-subnav {
+  margin-bottom: 20px;
+}
+
+.dashboard-subnav a {
+  margin-left: 10px;
+  text-decoration: none;
+  background: transparent;
+}
+*/
+
+.order-list-header {
+
+}
+
+.order-list {
+
+}
+
+.order-list-item {
+
+}
+
