@@ -1,0 +1,132 @@
+@import "config";
+
+.header {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  min-width: 1000px;
+  background-color: whitesmoke;
+  border-bottom: 1px solid $header_border_color;
+  display: block;
+
+  font-weight: bold;
+}
+
+
+.header_element {
+  float: left;
+}
+
+.theme_background {
+  background: $default_font_color;
+  color: $colorTextOnHighlight !important;
+}
+.theme_background:hover {
+  background: $hover_color;
+  color: $colorTextOnHighlightHover !important;
+}
+
+.pictogram_image {
+  height: 28px;
+  width: 28px;
+  margin: 0px;
+  float: left;
+  vertical-align: top;
+  align: left;
+}
+.lark_pictogram_image {
+  background: url("lark_silhouette_28x28.png") 28px 28px no-repeat;
+  background-position: left top;
+}
+.pictogram_sh {
+  display: block;
+  width: 28px;
+
+  overflow: hidden;
+}
+
+
+div.site-search {
+  position: relative;
+  float: left;
+}
+
+div.site-search form {
+  position: relative;
+  float: left;
+  width: 360px;
+  margin-right: 10px;
+}
+
+div.site-search input {
+  position: relative;
+  width: 100%;
+  padding: 4px 20px 4px 8px;
+  font-size: 12px;
+  margin-left: 6px;
+  margin-right: 6px;
+
+  vertical-align: middle;
+  background-color: #fff;
+  background-repeat: no-repeat;
+  background-position: right center;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  outline: none;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.075);
+  font: 13px/1.4 Helvetica, arial, freesans, clean, sans-serif;
+}
+
+
+
+div.container {
+  width: 980px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+div.container ul {
+  margin-top: 0;
+  margin-bottom: 0;
+
+  list-style: none;
+}
+
+ul.nav-left {
+  display: block;
+  padding: 0px 2px 0 28px;
+  float: left;
+}
+
+ul.nav-right {
+  float: right;
+}
+
+
+
+li.header-nav-item {
+  float: left;
+  list-style: none;
+  padding: 4px 8px 4px 8px;
+
+}
+
+li.header-nav-item span:hover {
+  color: $hover_color;
+}
+
+li.header-nav-item i:hover {
+  color: $hover_color;
+}
+
+li.header-nav-item a {
+  display: inline;
+  text-decoration: none;
+}
+li.header-nav-item a:visited {
+  color: $default_font_color;
+}
+li.header-nav-item a:hover {
+  color: $hover_color;
+  background-color: $header_bg_color;
+}
+

@@ -1,24 +1,77 @@
 <% content_for :title, "LarkLims - Dashboard" %>
-<div class="contenthead-spaceonly">
-    <!--<span>Dashboard</span>-->
-</div>
-<div class="browser-content clearfix">
-    <div class="browser-subnav clearfix">
-        <%= link_to "New Order", new_order_path, :class => "button primary right" %>
-        <div class="browser-links left">
-            <a class="browser-subnav-item selected">Orders</a>
-            <a class="browser-subnav-item">Products</a>
-            <a class="browser-subnav-item">Labels</a>
-            <a class="browser-subnav-item">Users</a>
+
+<div class="content clearfix">
+
+    <div class="contenthead-spaceonly">
+        <!--<span>Dashboard</span>-->
+    </div>
+    <div class="browser-content clearfix">
+        <div class="browser-subnav clearfix">
+            <%= link_to "New Order", new_order_path, :class => "button primary right" %>
+            <div class="browser-links left">
+                <a class="browser-subnav-item selected">Orders</a>
+                <a class="browser-subnav-item">Products</a>
+                <a class="browser-subnav-item">Labels</a>
+                <a class="browser-subnav-item">Users</a>
+            </div>
         </div>
+
+        <div class="browser-list-header clearfix">
+            <label class="browser-list-header-select-all">
+                <input type="checkbox" />
+            </label>
+            <div class="browser-list-filters">
+                <div class="browser-list-header-toggle states left">
+                    <a href="#" class="button-link selected"><i class="fa fa-arrow-circle-o-up"></i> 3 Open</a>
+                    <a href="#" class="button-link"><i class="fa fa-check"></i> 2 Completed</a>
+                </div>
+                <div class="browser-list-header-toggle right">
+                    <div class="left select-menu">
+                        <span class="button-link select-menu-button">
+                            Status
+                        </span>
+                        <span class="button-link select-menu-button">
+                            Created by
+                        </span>
+                        <span class="button-link select-menu-button">
+                            Label
+                        </span>
+                        <span class="button-link select-menu-button">
+                            Sort
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <ul class="browser-list">
+            <li class="browser-list-item">
+                <label class="browser-list-cell browser-list-cell-checkbox">
+                    <input type="checkbox">
+                </label>
+                <div class="browser-list-cell">
+                    <a class="browser-list-cell-title-link" href="#">ABi assay xy</a>
+                    <div class="browser-meta">
+                        <span>Ordered 2 days ago by <a href="#">bdomokos</a></span>
+                    </div>
+                </div>
+            </li>
+
+            <li class="browser-list-item">
+                <label class="browser-list-cell browser-list-cell-checkbox">
+                    <input type="checkbox">
+                </label>
+                <div class="browser-list-cell">
+                    <a class="browser-list-cell-title-link" href="#">Pipettes 123</a>
+                    <div class="browser-meta">
+                        <span>Ordered 4 days ago by <a href="#">bdomokos</a></span>
+                    </div>
+                </div>
+            </li>
+        </ul>
     </div>
 
-    <div class="order-list-header">
-
+    <div>
+        <p id="notice"><%= flash[:notice] %></p>
+        <p id="alert"><%= flash[:alert] %></p>
     </div>
-    <ul class="order-list">
-        <li class="order-list-item">
-
-        </li>
-    </ul>
 </div>

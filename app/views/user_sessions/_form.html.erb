@@ -1,13 +1,42 @@
-<%= form_tag user_sessions_path, :method => :post do %>
-  <div class="field">
-    <%= label_tag :email %><br />
-    <%= text_field_tag :email %>
-  </div>
-  <div class="field">
-    <%= label_tag :password %><br />
-    <%= password_field_tag :password %>
-  </div>
-  <div class="actions">
-    <%= submit_tag "Login" %>
-  </div>
-<% end %>
+<% content_for :title, "LarkLims - Sign In" %>
+
+<div class="signin-section">
+
+    <div class="container clearfix">
+        <%= form_tag user_sessions_path, :method => :post, :class => 'form-signin' do %>
+
+            <dl class="form">
+                  <dd class="field">
+                      <input class="textfield" type="text" autofocus="" placeholder="E-mail" name="email"></input>
+                  </dd>
+            </dl>
+            <dl class="form">
+                  <dd class="field">
+                      <input class="textfield" type="password" placeholder="Password" name="password"></input>
+                  </dd>
+            </dl>
+            <%= button_tag "Login", :class => "button primary button-block" %>
+
+        <% end %>
+
+        <h1 class="heading">
+            LIMS<br/> simpler than ever.
+        </h1>
+
+        <p class="subheading">
+            Track your lab orders, collaborate with your collegues.
+        </p>
+    </div>
+
+</div>
+<div class="welcome-section">
+    <div class="container">
+        <h1>Why you will love LarkLims.</h1>
+        <p class="welcome-sub">Simple usage supporting all your workflows...</p>
+    </div>
+</div>
+
+<div>
+    <p id="notice"><%= flash[:notice] %></p>
+    <p id="alert"><%= flash[:alert] %></p>
+</div>
