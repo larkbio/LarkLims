@@ -4,7 +4,6 @@ namespace :lims do
 
     p = Product.create(name: 'ABI MGB assay', description: 'Applied BioSystems MGB assay')
 
-
     p.product_params.create(key: 'product_name', name: 'Assay ID', description: "e.g. Hs_01086177_m1",
                             paramtype: :string, constraint: '', mandatory: false, value: '')
     p.product_params.create(key: 'gene_name', name: 'Gene Name', description: "Name of targeted gene",
@@ -30,6 +29,28 @@ namespace :lims do
                      product: p,
                      user_id: u.id)
 
+
+    p = Product.create(name: 'Antibody', description: 'Antibody for a specific target')
+
+    p.product_params.create(key: 'ab_application', name: 'Application', description: "Application",
+                            paramtype: :string, constraint: '', mandatory: false, value: '')
+    p.product_params.create(key: 'ab_prot_name', name: 'Protein Name', description: "Name of targeted protein",
+                            paramtype: :string, constraint: '', mandatory: false, value: '')
+    p.product_params.create(key: 'ab_producer', name: 'Producer', description: "Who produced this antibody",
+                            paramtype: :string, constraint: '', mandatory: false, value: '')
+    p.save!
+    o = Order.create(order_date: '',
+                     catalog_number: '',
+                     price: 4.0,
+                     quantity: '1',
+                     units: 'pack',
+                     department: 'bio',
+                     comment: 'for experiment',
+                     url: '',
+                     ordered_from: 'ABi',
+                     status: 0,
+                     product: p,
+                     user_id: u.id)
 
   end
 

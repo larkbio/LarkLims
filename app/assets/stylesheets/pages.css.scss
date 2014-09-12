@@ -53,6 +53,9 @@ body {
   padding-bottom: 20px;
 }
 
+.hidden {
+  display: none;
+}
 @import "loginpage";
 @import "siteheader";
 @import "dashboard";

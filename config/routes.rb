@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'activities/index'
+
   resources :user_sessions
   resources :users
 
@@ -10,6 +12,8 @@ Rails.application.routes.draw do
 
   get 'pages/dashboard'
   get 'pages/browser'
+
+  get 'activities/index'
   #get 'login' => 'user_sessions#new', :as => :login
   #post 'logout' => 'user_sessions#destroy', :as => :logout
   # The priority is based upon order of creation: first created -> highest priority.

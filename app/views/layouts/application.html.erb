@@ -34,7 +34,7 @@
                 <% if current_user %>
                     <li class="header-nav-item">
                         <%= link_to edit_user_url(current_user.id) do %>
-                        <span class="header-nav-item">bdomokos</span>
+                        <span class="header-nav-item"><%= @user.name %></span>
                         <% end %>
                     </li>
                 <% end %>

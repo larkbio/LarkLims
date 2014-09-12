@@ -2,14 +2,13 @@
 <div class="content clearfix">
 
     <div class="contenthead-spaceonly clearfix">
-    <!--<span>Dashboard</span>-->
     </div>
     <div class="dashboard-content clearfix">
         <div class="columns clearfix">
             <div class="column one-fourth">
                 <h1>
-                    <span class="user-fullname">Balint Domokos</span>
-                    <span class="username">bdomokos</span>
+                    <span class="user-fullname"><%= @user.name %></span>
+                    <span class="username"><%= @user.email %></span>
                 </h1>
             </div>
             <div class="column three-fourths">
@@ -20,43 +19,8 @@
                         <span>Recent activity</span>
                     </div>
                 </div>
-                <div class="activities">
-
-                    <div class="activity">
-                        <div class="body">
-                            <i class="fa fa-check fa-2x activity-icon"></i>
-                            <div class="activity-time">
-                                <span>1 hours ago</span>
-                            </div>
-                            <div class="activity-title">
-                                <span>order</span>
-                                <a>abc</a>
-                                <span>arrived</span>
-                            </div>
-                            <div class="activity-details">
-                                <span>Order delivered</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="activity">
-                        <div class="body">
-                            <i class="fa fa-plus fa-2x activity-icon"></i>
-                            <div class="activity-time">
-                                <span>21 hours ago</span>
-                            </div>
-                            <div class="activity-title">
-                                <a>bdomokos</a>
-                                <span>added order</span>
-                                <a>abc</a>
-                            </div>
-                            <div class="activity-details">
-                                <span>Order placed</span>
-                            </div>
-                        </div>
-                    </div>
-
-
+                <div id="activity-list" class="activities">
+                    <!--place for activity records, loaded dynamically-->
                 </div>
             </div>
         </div>
@@ -67,4 +31,29 @@
         <p id="notice"><%= flash[:notice] %></p>
         <p id="alert"><%= flash[:alert] %></p>
     </div>
+
+    <!-- this template gets copied and filled for each action by the ajax function load_activities (activities.js.coffee) -->
+    <div id="activity_template" class="hidden">
+        <div class="activity">
+            <div class="body">
+                <i class="fa fa-2x activity-icon"></i>
+                <div class="activity-time">
+                    <span>
+
+                    </span>
+                </div>
+                <div class="activity-title">
+                </div>
+                <div class="activity-details">
+                    <span>
+
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+<script type="text/javascript">
+    load_activities();
+</script>

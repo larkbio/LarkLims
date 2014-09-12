@@ -101,8 +101,11 @@
 }
 .activity-title a {
   color: #4183c4;
-
+  text-decoration: none;
   cursor: pointer;
+}
+.activity-title a:visited {
+  color: #4183c4;
 }
 .activity-title a:hover {
   color: #4183c4;
