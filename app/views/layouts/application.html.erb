@@ -30,6 +30,13 @@
                 <li class="header-nav-item">
                     <%= link_to 'Orders', controller: 'orders' %>
                 </li>
+                <li class="header-nav-item">
+                    <%= link_to 'Import', controller: 'populate', action: 'index' %>
+                </li>
+                <li class="header-nav-item">
+                    <%= link_to 'Export', controller: 'populate', action: 'export', format: 'xls' %>
+                </li>
+
             </ul>
             <ul class="nav-right">
                 <% if current_user %>

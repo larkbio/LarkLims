@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  post 'populate/import'
+  get 'populate/export'
+  get 'populate/index'
   resources :user_sessions
   resources :users
 
@@ -18,6 +21,7 @@ Rails.application.routes.draw do
   root 'pages#index'
   #root :to => 'users#index'
   resources :user_sessions
+
 
 
   get 'login' => 'user_sessions#new', :as => :login

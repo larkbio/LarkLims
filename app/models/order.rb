@@ -14,6 +14,7 @@ class Order < ActiveRecord::Base
     p self
     self.product.product_params.each do |param|
       par = param.dup
+      par.is_product = false
       self.product_params.append(par)
     end
   end

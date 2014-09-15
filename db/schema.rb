@@ -11,7 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140909093143) do
+ActiveRecord::Schema.define(version: 20140912093739) do
+
+  create_table "datafiles", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "orders", force: true do |t|
     t.datetime "order_date"
@@ -46,8 +51,10 @@ ActiveRecord::Schema.define(version: 20140909093143) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "order_id"
+    t.boolean  "is_product",  default: true
   end
 
+  add_index "product_params", ["key", "product_id", "order_id"], name: "index_product_params", unique: true
   add_index "product_params", ["order_id"], name: "index_product_params_on_order_id"
   add_index "product_params", ["product_id"], name: "index_product_params_on_product_id"
 
@@ -57,6 +64,8 @@ ActiveRecord::Schema.define(version: 20140909093143) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "products", ["name"], name: "index_product_on_name", unique: true
 
   create_table "users", force: true do |t|
     t.string   "email",            null: false
