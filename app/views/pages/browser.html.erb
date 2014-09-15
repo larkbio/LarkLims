@@ -7,12 +7,13 @@
     </div>
     <div class="browser-content clearfix">
         <div class="browser-subnav clearfix">
-            <%= link_to "New Order", new_order_path, :class => "button primary right" %>
+            <%= link_to "New Order", new_order_path, :class => "button primary right", :id => "new-order-button" %>
+            <%= link_to "New Product", new_product_path, :class => "button primary right hidden" , :id => "new-product-button" %>
+            <%= link_to "New User", new_user_path, :class => "button primary right hidden" , :id => "new-user-button" %>
             <div class="browser-links left">
-                <a class="browser-subnav-item selected">Orders</a>
-                <a class="browser-subnav-item">Products</a>
-                <a class="browser-subnav-item">Labels</a>
-                <a class="browser-subnav-item">Users</a>
+                <a id="orders-button" class="browser-subnav-item selected">Orders</a>
+                <a id="products-button" class="browser-subnav-item">Products</a>
+                <a id="users-button" class="browser-subnav-item">Users</a>
             </div>
         </div>
 
@@ -21,9 +22,9 @@
                 <input type="checkbox" />
             </label>
             <div class="browser-list-filters">
-                <div class="browser-list-header-toggle states left">
-                    <a href="#" class="button-link selected"><i class="fa fa-arrow-circle-o-up"></i> 3 Open</a>
-                    <a href="#" class="button-link"><i class="fa fa-check"></i> 2 Completed</a>
+                <div id="orders-title" class="browser-list-header-toggle states left">
+                    <a id="order-stat-open" href="#" class="button-link selected"><i class="fa fa-arrow-circle-o-up"></i> 3 Open</a>
+                    <a id="order-stat-closed" href="#" class="button-link"><i class="fa fa-check"></i> 2 Completed</a>
                 </div>
                 <div class="browser-list-header-toggle right">
                     <div class="left select-menu">
@@ -34,44 +35,44 @@
                             Created by
                         </span>
                         <span class="button-link select-menu-button">
-                            Label
-                        </span>
-                        <span class="button-link select-menu-button">
                             Sort
                         </span>
                     </div>
                 </div>
             </div>
         </div>
-        <ul class="browser-list">
-            <li class="browser-list-item">
+        <ul id="orders-table" class="browser-list">
+            <!--loaded dynamically by load_orders()-->
+        </ul>
+        <ul id="products-table" class="browser-list hidden">
+            <!--loaded dynamically by load_orders()-->
+        </ul>
+        <ul id="users-table" class="browser-list hidden">
+            <!--loaded dynamically by load_orders()-->
+        </ul>
+    </div>
+    <div class="hidden">
+        <ul>
+            <li id="list_item_template" class="browser-list-item">
                 <label class="browser-list-cell browser-list-cell-checkbox">
                     <input type="checkbox">
                 </label>
                 <div class="browser-list-cell">
-                    <a class="browser-list-cell-title-link" href="#">ABi assay xy</a>
+                    <a class="browser-list-cell-title-link" href="#"></a>
                     <div class="browser-meta">
-                        <span>Ordered 2 days ago by <a href="#">bdomokos</a></span>
-                    </div>
-                </div>
-            </li>
-
-            <li class="browser-list-item">
-                <label class="browser-list-cell browser-list-cell-checkbox">
-                    <input type="checkbox">
-                </label>
-                <div class="browser-list-cell">
-                    <a class="browser-list-cell-title-link" href="#">Pipettes 123</a>
-                    <div class="browser-meta">
-                        <span>Ordered 4 days ago by <a href="#">bdomokos</a></span>
+                        <span></span>
                     </div>
                 </div>
             </li>
         </ul>
     </div>
-
     <div>
         <p id="notice"><%= flash[:notice] %></p>
         <p id="alert"><%= flash[:alert] %></p>
     </div>
 </div>
+
+<script type="text/javascript">
+    browser_menu();
+    load_orders();
+</script>

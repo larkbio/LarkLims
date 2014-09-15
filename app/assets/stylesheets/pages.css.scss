@@ -54,7 +54,7 @@ body {
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
 @import "loginpage";
 @import "siteheader";

@@ -5,6 +5,9 @@ class OrdersController < ApplicationController
   # GET /orders.json
   def index
     @orders = Order.all
+    # TODO separate this into a new action, or something...
+    @num_opened = Order.where("status=0").size
+    @num_closed = Order.where("status=1").size
   end
 
   # GET /orders/1
