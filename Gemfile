@@ -41,3 +41,4 @@ gem 'font-awesome-sass'
 # gem 'debugger', group: [:development, :test]
 
 gem 'sorcery'
+gem 'spreadsheet'

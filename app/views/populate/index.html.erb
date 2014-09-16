@@ -1,0 +1,9 @@
+<h1>File Upload</h1>
+<%= form_tag({action: :import}, multipart: true) do %>
+
+<%= file_field_tag 'xls' %>
+<%= submit_tag("Upload") %>
+<% end %>
+
+<p id="notice"><%= flash[:notice] %></p>
+<p id="alert"><%= flash[:alert] %></p>

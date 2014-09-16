@@ -1,5 +1,6 @@
 namespace :lims do
   desc "Populate database with default content"
+
   task populate: :environment do
 
     p = Product.create(name: 'ABI MGB assay', description: 'Applied BioSystems MGB assay')
@@ -11,11 +12,13 @@ namespace :lims do
     p.product_params.create(key: 'species_name', name: 'Species', description: "Target organism",
                             paramtype: :string, constraint: '', mandatory: false, value: '')
     p.save!
+
     u = User.create(name: 'admin',
                     email: 'admin@admin.hu',
                     password: 'admin',
                     password_confirmation: 'admin',
                     admin: true)
+
     o = Order.create(order_date: '',
                      catalog_number: '',
                      price: 1234.0,
@@ -27,8 +30,10 @@ namespace :lims do
                      ordered_from: 'ABi',
                      status: 0,
                      product: p,
-                     user_id: u.id)
-
+                     user_id: u.id
+                     )
+    o.create_product_specific_params
+    o.save!
 
     p = Product.create(name: 'Antibody', description: 'Antibody for a specific target')
 
@@ -51,7 +56,16 @@ namespace :lims do
                      status: 0,
                      product: p,
                      user_id: u.id)
-
+    o.create_product_specific_params
+    o.save!
+    
   end
 
+  task create_admin: :environment do
+    u = User.create(name: 'admin',
+                    email: 'admin@admin.hu',
+                    password: 'admin',
+                    password_confirmation: 'admin',
+                    admin: true)
+  end
 end

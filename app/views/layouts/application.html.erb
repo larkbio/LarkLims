@@ -28,6 +28,12 @@
                     <%= link_to 'Browse', controller: 'pages', action: 'browser' %>
                 </li>
 
+                <li class="header-nav-item">
+                    <%= link_to 'Import', controller: 'populate', action: 'index' %>
+                </li>
+                <li class="header-nav-item">
+                    <%= link_to 'Export', controller: 'populate', action: 'export', format: 'xls' %>
+                </li>
 
             </ul>
             <ul class="nav-right">
@@ -54,10 +60,7 @@
         </div>
     </div>
 
-
-        <%= yield %>
-
-
+    <%= yield %>
 </div>
 
 </body>
