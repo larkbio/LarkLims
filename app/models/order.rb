@@ -5,7 +5,6 @@ class Order < ActiveRecord::Base
   validates :product, presence: true
   validates :user, presence: true
 
-
   def create_product_specific_params
     p "duplicate params called on:"
     p self
@@ -13,6 +12,7 @@ class Order < ActiveRecord::Base
     self.product.product_params.each do |param|
       par = param.dup
       par.is_product = false
+      par.product_id = nil
       self.product_params.append(par)
     end
    end

@@ -1,0 +1,107 @@
+<div id="new-order-table" class="boxed-group hidden">
+    <h3>New order</h3>
+    <div class="boxed-group-inner clearfix">
+          <form id="new-order-params-form" class="columns">
+              <div id="param-container" class="column two-thirds">
+
+                  <dl id="product-name-container" class="form">
+                      <dt>
+                          <label for="product-name">Product</label>
+                      </dt>
+                      <dd>
+                          <select id="product-name-sel">
+                              <option>ABC</option>
+                          </select>
+
+                      </dd>
+                  </dl>
+                  <div id="params-holder">
+
+                  </div>
+              </div>
+          </form>
+            <hr class="param-sep"/>
+          <form id="new-order-form" class="columns">
+              <input id="product-id-holder" name="order[product_id]" type="hidden">
+              <div class="column two-thirds">
+                  <dl class="form">
+                      <dt>
+                          <label for="item-provider">Ordered from</label>
+                      </dt>
+                      <dd>
+                          <input class="long" id="item-provider" name="order[ordered_from]" size="30" type="text">
+                      </dd>
+                  </dl>
+
+                  <dl class="form">
+                      <dt>
+                          <label for="item-price">Price</label>
+                      </dt>
+                      <dd>
+                          <input class="long" id="item-price" name="order[price]" size="30" type="text">
+                      </dd>
+                  </dl>
+
+                  <dl class="form">
+                      <dt>
+                          <label for="item-quantity">Quantity</label>
+                      </dt>
+                      <dd>
+                          <input class="long" id="item-quantity" name="order[quantity]" size="30" type="text">
+                      </dd>
+                  </dl>
+
+                  <dl class="form">
+                      <dt>
+                          <label for="item-units">Units</label>
+                      </dt>
+                      <dd>
+                          <input class="long" id="item-units" name="order[units]" size="30" type="text">
+                      </dd>
+                  </dl>
+
+                  <dl class="form">
+                      <dt>
+                          <label for="item-department">Ordering department</label>
+                      </dt>
+                      <dd>
+                          <input class="long" id="item-department" name="order[department]" size="30" type="text">
+                      </dd>
+                  </dl>
+
+                  <dl class="form">
+                      <dt>
+                          <label for="item-comment">Comment</label>
+                      </dt>
+                      <dd>
+                          <input class="long" id="item-comment" name="order[comment]" size="30" type="text">
+                      </dd>
+                  </dl>
+
+                  <dl class="form">
+                      <dt>
+                          <label for="item-url">Reference URL</label>
+                      </dt>
+                      <dd>
+                          <input class="long" id="item-url" name="order[url]" size="30" type="text">
+                      </dd>
+                  </dl>
+
+                  <p>
+                      <button id="new-order-submit-button" type="submit" class="button primary">Create order</button>
+                  </p>
+                  </dl>
+              </div>
+          </form>
+    </div>
+    <div id="param-template" class="hidden">
+        <dl class="form dynamic">
+            <dt>
+                <label for="item-tmp"></label>
+            </dt>
+            <dd>
+                <input class="long" id="item-tmp" size="30" type="text">
+            </dd>
+        </dl>
+    </div>
+</div>

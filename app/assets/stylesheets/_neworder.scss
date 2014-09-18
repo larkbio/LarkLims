@@ -1,0 +1,113 @@
+.boxed-group {
+  position: relative;
+  border-radius: 3px;
+  margin-bottom: 30px;
+}
+
+.boxed-group>h3 {
+  background-color: #f5f5f5;
+  margin: 0;
+  border-radius: 3px 3px 0 0;
+  border: 1px solid #d8d8d8;
+  border-bottom: 0;
+  padding: 9px 10px 10px;
+  font-size: 14px;
+  line-height: 17px;
+  display: block;
+}
+
+.boxed-group-inner {
+  padding: 1px 10px;
+  background: #fff;
+  border: 1px solid #d8d8d8;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  color: #666;
+  font-size: 13px;
+}
+
+.columns {
+  margin-left: -10px;
+  margin-right: -10px;
+}
+
+.columns:before {
+  display: table;
+  content: "";
+}
+
+.columns:after {
+  display: table;
+  clear: both;
+  content: "";
+}
+
+.form {
+  display: block;
+  margin-top: 0em;
+}
+
+.column {
+  float: left;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.two-thirds {
+  width: 67%;
+}
+dl.form {
+  margin: 15px 0;
+}
+
+dl.form>dt {
+  margin: 0 0 6px;
+}
+
+dl.form>dt label {
+  position: relative;
+}
+
+label {
+  font-size: 13px;
+  font-weight: bold;
+}
+
+dd {
+  margin-left: 0;
+}
+
+dl.form input[type="text"] {
+  width: 100%;
+
+  max-width: 100%;
+  margin-right: 5px;
+  background-position-x: 98%;
+
+  background-color: #fafafa;
+
+//  min-height: 34px;
+  padding: 7px 8px;
+  font-size: 13px;
+  color: #333;
+  vertical-align: middle;
+  background-color: #fff;
+  background-repeat: no-repeat;
+  background-position: right center;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  outline: none;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.075);
+}
+
+#new-order-table {
+  margin-top: 0px;
+  padding-top: 20px;
+  border-top: 1px solid #ddd;
+}
+
+.param-sep {
+  width: 100%;
+//  padding: 0 10px;
+//  margin-left: -10px;
+  border-top: 1px solid #ddd;
+}

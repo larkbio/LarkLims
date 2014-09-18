@@ -4,27 +4,55 @@ class ProductParamsController < ApplicationController
   # GET /product_params
   # GET /product_params.json
   def index
-    @product = Product.find(params[:product_id])
-    @product_params = ProductParam.where(:product_id => params[:product_id])
+    @is_product = false
+    if params[:product_id]
+      @product = Product.find(params[:product_id])
+      @product_params = ProductParam.where(:product_id => params[:product_id])
+      @is_product = true
+    else
+      @order = Order.find(params[:order_id])
+      @product_params = ProductParam.where(:order_id => params[:order_id])
+    end
   end
 
   # GET /product_params/1
   # GET /product_params/1.json
   def show
-    @product = Product.find(params[:product_id])
-    @product_param = ProductParam.find(params[:id])
+    @is_product = false
+    if params[:product_id]
+      @product = Product.find(params[:product_id])
+      @product_param = ProductParam.find(params[:id])
+      @is_product = true
+    else
+      @order = Order.find(params[:order_id])
+      @product_param = ProductParam.find(params[:id])
+    end
   end
 
   # GET /product_params/new
   def new
-    @product = Product.find(params[:product_id])
-    @product_param = ProductParam.new
+    @is_product = false
+    if params[:product_id]
+      @is_product = true
+
+      @product = Product.find(params[:product_id])
+      @product_param = ProductParam.new
+    else
+      render 'error', :status => 403
+    end
   end
 
   # GET /product_params/1/edit
   def edit
-    @product = Product.find(params[:product_id])
-    @product_param = ProductParam.find(params[:id])
+    @is_product = false
+    if params[:product_id]
+      @product = Product.find(params[:product_id])
+      @product_param = ProductParam.find(params[:id])
+      @is_product = true
+    else
+      @order = Order.find(params[:order_id])
+      @product_param = ProductParam.find(params[:id])
+    end
   end
 
   # POST /product_params
@@ -48,14 +76,30 @@ class ProductParamsController < ApplicationController
   # PATCH/PUT /product_params/1
   # PATCH/PUT /product_params/1.json
   def update
-    @product = Product.find(params[:product_id])
+    @is_product = false
+    if params[:product_id]
+      @is_product = true
+      @product = Product.find(params[:product_id])
+    else
+      @order = Order.find(params[:order_id])
+    end
     respond_to do |format|
-      if @product_param.update(product_param_params)
-        format.html { redirect_to product_product_param_url(@product, @product_param), notice: 'Product param was successfully updated.' }
-        format.json { render :show, status: :ok, location: @product_param }
+      if @is_product
+        if @product_param.update(product_param_params)
+          format.html { redirect_to product_product_param_url(@product, @product_param), notice: 'Product param was successfully updated.' }
+          format.json { render :show, status: :ok, location: product_product_param_path(@product, @product_param) }
+        else
+          format.html { render :edit }
+          format.json { render json: @product_param.errors, status: :unprocessable_entity }
+        end
       else
-        format.html { render :edit }
-        format.json { render json: @product_param.errors, status: :unprocessable_entity }
+        if @product_param.update(product_param_params)
+          format.html { redirect_to order_product_param_url(@order, @product_param), notice: 'Product param was successfully updated.'}
+          format.json { render :show, status: :ok, location: order_product_param_path(@order, @product_param) }
+        else
+          format.html { render :edit }
+          format.json { render json: @product_param.errors, status: :unprocessable_entity }
+        end
       end
     end
   end

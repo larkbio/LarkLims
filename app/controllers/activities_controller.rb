@@ -18,8 +18,9 @@ class ActivitiesController < ApplicationController
                        :activity_title => title, :activity_detail => o.comment, :activity_icon => "fa-check"})
     end
 
-    sorted = activities.sort_by { |item| item[:date] }.reverse
+    activities.sort_by { |item| item[:date] }
+    activities.reverse
 
-    render json: sorted
+    render json: activities
   end
 end

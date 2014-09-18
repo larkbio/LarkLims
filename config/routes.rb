@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   resources :user_sessions
   resources :users
 
-  resources :orders
+  resources :orders do
+    resources :product_params
+  end
 
   resources :products do
     resources :product_params

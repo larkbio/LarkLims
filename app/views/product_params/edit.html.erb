@@ -1,6 +1,10 @@
 <h1>Editing product_param</h1>
 
 <%= render 'form' %>
-
+<% if @is_product %>
 <%= link_to 'Show', product_product_param_path(@product, @product_param) %>
 <%= link_to 'Back', product_product_params_path(@product) %>
+<% else %>
+    <%= link_to 'Show', order_product_param_path(@order, @product_param) %>
+    <%= link_to 'Back', order_product_params_path(@order) %>
+<% end %>

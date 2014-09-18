@@ -5,9 +5,9 @@
     <div class="contenthead-spaceonly">
         <!--<span>Dashboard</span>-->
     </div>
-    <div class="browser-content clearfix">
+    <div id="browser-menu-tab" class="browser-content clearfix">
         <div class="browser-subnav clearfix">
-            <%= link_to "New Order", new_order_path, :class => "button primary right", :id => "new-order-button" %>
+            <%= link_to "New Order", "#", :class => "button primary right", :id => "new-order-button" %>
             <%= link_to "New Product", new_product_path, :class => "button primary right hidden" , :id => "new-product-button" %>
             <%= link_to "New User", new_user_path, :class => "button primary right hidden" , :id => "new-user-button" %>
             <div class="browser-links left">
@@ -17,7 +17,7 @@
             </div>
         </div>
 
-        <div class="browser-list-header clearfix">
+        <div id="browser-list-header-tab" class="browser-list-header clearfix">
             <label class="browser-list-header-select-all">
                 <input type="checkbox" />
             </label>
@@ -50,7 +50,12 @@
         <ul id="users-table" class="browser-list hidden">
             <!--loaded dynamically by load_orders()-->
         </ul>
+
+        <%= render "new_order_form" %>
     </div>
+
+
+
     <div class="hidden">
         <ul>
             <li id="list_item_template" class="browser-list-item">
@@ -75,4 +80,5 @@
 <script type="text/javascript">
     browser_menu();
     load_orders();
+
 </script>
