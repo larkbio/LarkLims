@@ -10,7 +10,6 @@
       console.log "AJAX Error: #{textStatus}"
     success: (data, textStatus, jqXHR) ->
       console.log "Successful AJAX call"
-      console.log data
 
       $("#order-stat-open").html("<i class=\"fa fa-arrow-circle-o-up\"></i> "+data[0].num_opened+" Open")
       $("#order-stat-closed").html("<i class=\"fa fa-check\"></i> "+data[0].num_closed+" Completed")
@@ -27,7 +26,7 @@
           new_order.insertAfter($("ul#orders-table").children().last())
         i = i+1
 
-        $("#"+new_id+" div a.browser-list-cell-title-link").html(order.product_name)
+        $("#"+new_id+" div a.browser-list-cell-title-link").html(order.comment+" ("+order.product_name+")")
         $("#"+new_id+" div a.browser-list-cell-title-link").attr("href", "/orders/"+order.id)
         $("#"+new_id+" div div.browser-meta span").html(
             "Ordered "+order.order_age+" ago by <a href='/users/"+order.owner_id+"'>"+order.owner+"</a>")
@@ -41,6 +40,7 @@
   $("#new-order-button").addClass('hidden')
   $("#new-product-button").addClass('hidden')
   $("#new-user-button").addClass('hidden')
+  $("#show-order-table").addClass('hidden')
 
 @delete_product_params = () ->
   $("#param-container>dl.dynamic").remove()
@@ -79,6 +79,7 @@
 @browser_menu = () ->
   $("#orders-button").click ->
     unselect_meus()
+    $("#browser-list-header-tab").removeClass("hidden")
     $("#orders-title").removeClass('hidden')
     $("#orders-table").removeClass('hidden')
     $("#orders-button").addClass('selected')
@@ -88,23 +89,32 @@
 
   $("#products-button").click ->
     unselect_meus()
+    $("#browser-list-header-tab").removeClass("hidden")
     $("#products-button").addClass('selected')
     $("#products-table").removeClass('hidden')
-    $("#new-product-button").removeClass('hidden')
+#    uncomment if new product form added
+#    $("#new-product-button").removeClass('hidden')
+#
     $("#new-order-table").addClass("hidden")
     load_products()
 
   $("#users-button").click ->
     unselect_meus()
+    $("#browser-list-header-tab").removeClass("hidden")
     $("#users-button").addClass('selected')
     $("#users-table").removeClass('hidden')
-    $("#new-user-button").removeClass('hidden')
+# uncomment of new user form added
+#    $("#new-user-button").removeClass('hidden')
+#
     $("#new-order-table").addClass("hidden")
     load_users()
+
+
 
   $("#new-order-button").click (event) ->
     event.preventDefault()
     delete_product_params()
+    $("#show-order-table").addClass('hidden')
     $("#browser-list-header-tab").addClass("hidden")
     $("#orders-table").addClass("hidden")
     $("#products-table").addClass("hidden")
@@ -139,7 +149,6 @@
     product_id = opt.val()
     add_product_params(product_id)
 
-
   $("#new-order-submit-button").click (event) ->
     event.preventDefault()
     values = $("#new-order-form").serialize()
@@ -173,4 +182,10 @@
 #        $("#browser-list-header-tab").removeClass("hidden")
 #        $("#new-order-table").addClass("hidden")
 
+  $("ul#orders-table").delegate("li div.browser-list-cell", "click", show_order_handler )
+
+  $("#show-order-table").delegate( "div.edit-butt", "click", edit_order_param_handler )
+
+  $("#show-order-table").delegate( "button.button.cancel", "click", cancel_order_param_handler )
+  $("#show-order-table").delegate( "button.button.save", "click", save_order_param_handler )
 

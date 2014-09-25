@@ -42,3 +42,4 @@ gem 'font-awesome-sass'
 
 gem 'sorcery'
 gem 'spreadsheet'
+gem 'faker'

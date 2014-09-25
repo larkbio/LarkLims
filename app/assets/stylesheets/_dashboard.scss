@@ -116,3 +116,17 @@
 .activity-details {
   color: #666;
 }
+.activity-details a {
+  text-decoration: none;
+  color: #666;
+  background-color: #fff;
+}
+
+.activity-details a:visited {
+  color: #4183c4;
+}
+.activity-details a:hover {
+  color: #4183c4;
+  text-decoration: underline;
+  background-color: #fff;
+}

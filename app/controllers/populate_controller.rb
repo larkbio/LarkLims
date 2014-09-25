@@ -13,79 +13,47 @@ class PopulateController < ApplicationController
       end
 
       workbook = Spreadsheet.open(path)
-      parr = Array.new
+      prod_hash = {}
       pparr = Array.new
       oparr = Array.new
       oarr = Array.new
 
       0.upto workbook.sheet_count-1 do |index|
         sheet = workbook.worksheet(index)
+        rownum = 0
         sheet.each do |row|
+          if rownum==0
+            rownum = rownum+1
+            next
+          end
           if sheet.name == 'products'
-            prod = {"id" => row[0], "name" => row[1], "description" => row[2]}
-            parr.push(prod)
+            p = Product.new( "name" => row[1], "description" => row[2])
+            puts "adding product #{row[0].to_i }"
+            prod_hash[row[0].to_i] = p
           elsif sheet.name == 'product_params'
-            pp = {"product_id" => row[0], "key" => row[2], "name" => row[3], "paramtype" => row[4], "description" => row[5], "constrinat" => row[6], "mandatory" => row[7], "value" => row[8]}
-            pparr.push(pp)
+            puts "adding productparam to #{row[0].to_i}"
+            pp = ProductParam.new( "key" => row[2], "name" => row[3], "paramtype" => row[4], "description" => row[5], "constraint" => row[6], "mandatory" => row[7], "value" => row[8] )
+            prod_hash[row[0].to_i].product_params.append(pp)
           elsif sheet.name == 'order_params'
-            op = {"product_id" => row[0], "order_id" => row[1], "key" => row[2], "name" => row[3], "paramtype" => row[4], "description" => row[5], "constrinat" => row[6], "mandatory" => row[7], "value" => row[8]}
-            oparr.push(op)
+            # op = {"product_id" => row[0], "order_id" => row[1], "key" => row[2], "name" => row[3], "paramtype" => row[4], "description" => row[5], "constrinat" => row[6], "mandatory" => row[7], "value" => row[8]}
+            # oparr.push(op)
           elsif sheet.name == 'orders'
-            o = {"id" => row[0], "product_id" => row[1], "order_date" => row[2], "catalog_number" => row[3], "price" => row[4], "quantity" => row[5], "units" => row[6], "department" => row[7], "comment" => row[8], "url" => row[9], "ordered_from" => row[10], "status" => row[11], "arrival_date" => row[12], "place" => row[13], "user_id" => current_user.id}
-            oarr.push(o)
+            # o = {"id" => row[0], "product_id" => row[1], "order_date" => row[2], "catalog_number" => row[3], "price" => row[4], "quantity" => row[5], "units" => row[6], "department" => row[7], "comment" => row[8], "url" => row[9], "ordered_from" => row[10], "status" => row[11], "arrival_date" => row[12], "place" => row[13], "user_id" => current_user.id}
+            # oarr.push(o)
           end
         end
       end
 
-      pidhash = Hash.new
-      parr.each do |item|
-        if item['id'] != 'id'
-          p = Product.create(name: item['name'], description: item['description'])
-          spparr = pparr.select { |pp| pp["product_id"] == item['id'] }
-          spparr.each do |item|
-            if item['product_id'] != 'product_id'
-                p.product_params.create(key: item['key'], name: item['name'], is_product: true, paramtype: item['paramtype'], description: item['description'], constraint: item['constraint'], mandatory: item['mandatory'], value: item['value'])
-            end
-          end
-          p.save!
-          pidhash[item['id']] = p.id
-          puts 'pid'
-          puts p.id
-        end
+
+      prod_hash.each_key do |k|
+        item = prod_hash[k]
+        puts "saving #{k} - #{item.name}"
+        item.save!
       end
-
-
-    puts
-    oarr.each do |oitem|
-      if oitem['product_id'] != 'product_id'
-         dbid = pidhash[oitem['product_id']]
-         puts 'dbid'
-         puts dbid
-         pr = Product.find(dbid)
-
-        o = Order.create(product: pr, order_date: oitem['order_date'], catalog_number: oitem['catalog_number'],
-            price: oitem['price'], quantity: oitem['quantity'],
-            units: oitem['units'], department: oitem['department'],
-            comment: oitem['comment'], url: oitem['url'],
-            ordered_from: oitem['ordered_from'], status: oitem['status'],
-            arrival_date: oitem['arrival_date'], place: oitem['place'], user_id: current_user.id)
-
-        filteredoparr = oparr.select { |op| op["order_id"] == oitem['id'] }
-         puts 'filteredoparr'
-         puts filteredoparr
-         filteredoparr.each do |item|
-          if item['product_id'] != 'product_id'
-            o.product_params.create(product_id: pr.id, key: item['key'], name: item['name'], is_product: false, paramtype: item['paramtype'], description: item['description'], constraint: item['constraint'], mandatory: item['mandatory'], value: item['value'])
-          end
-        end
-
-        o.save!
-      end
-     end
 
       redirect_to(:populate_index, notice: 'Import successful!')
       rescue => e
-        puts e.full_message
+        puts e
         redirect_to(:populate_index, alert: e.message)
       end
 

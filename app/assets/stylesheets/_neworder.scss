@@ -60,7 +60,13 @@ dl.form {
 }
 
 dl.form>dt {
+  width: 30%;
   margin: 0 0 6px;
+  float: left;
+}
+dl.form>dd {
+  width: 70%;
+  float: left;
 }
 
 dl.form>dt label {

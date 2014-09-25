@@ -1,0 +1,93 @@
+<div id="show-order-table" class="hidden">
+    <div class="boxed-group right">
+        <h3>Order details</h3>
+        <!--<div class="boxed-group-inner clearfix ">-->
+
+            <!--<div id="show-order-form" class="">-->
+        <ul class="browser-list">
+        <% arr_names = ["product", "description", "ordered_from", "price", "quantity", "units", "department"]
+           arr_titles = ["Product", "Description", "Ordered from", "Price", "Quantity", "Units", "Ordering department"]
+           for i in 0..(arr_names.size-1)
+        %>
+            <li class="browser-list-item">
+                <span class="browser-list-cell param-title"><%= arr_titles[i] %></span>
+                <span id="order-<%= arr_names[i] %>-txt" class="browser-list-cell param-value"></span>
+                <span id="order-<%= arr_names[i] %>-edit" class="browser-list-cell param-value hidden"><input id="order-<%= arr_names[i] %>-entry" class="browser-edit-input"></span>
+
+                <span id="order-<%= arr_names[i] %>-button" class="browser-list-cell param-control">
+                    <% if i!=0 %>
+                    <div class="edit-butt right"><span><span class="fa fa-pencil"></span> Edit</span></div>
+                    <div class="control-butt right hidden"><button class="button cancel">Cancel</button><button class="button save primary">Save</button></div>
+                    <% end %>
+                </span>
+
+            </li>
+        <% end %>
+            <li class="browser-list-item">
+                <span class="browser-list-cell param-title">Reference URL</span>
+                <a id="order-url-txt" class="browser-list-cell"></a>
+                <span id="order-url-button" class="browser-list-cell param-control">
+                    <div class="edit-butt right"><span><span class="fa fa-pencil"></span> Edit</span></div>
+                    <div class="control-butt right hidden"><button class="button cancel">Cancel</button><button class="button primary">Save</button></div>
+                </span>
+            </li>
+
+                <!---->
+                    <!--<li class="browser-list-item">-->
+                        <!--<span class="browser-list-cell param-title">Product</span>-->
+                        <!--<span id="item-product-txt" class="browser-list-cell"></span>-->
+                        <!--<span class="browser-list-cell cell-editor-button right">&nbsp;</span>-->
+                    <!--</li>-->
+
+                    <!--<li class="browser-list-item">-->
+                            <!--<span class="browser-list-cell param-title">Description</span>-->
+                            <!--<span id="item-comment-txt" class="browser-list-cell"></span>-->
+                            <!--<span class="browser-list-cell cell-editor-button right"><span class="fa fa-pencil"></span> Edit</span>-->
+                    <!--</li>-->
+                    <!--<li class="browser-list-item">-->
+                            <!--<span class="browser-list-cell param-title">Ordered from</span>-->
+                            <!--<span id="item-provider-txt" class="browser-list-cell"></span>-->
+                            <!--<span class="browser-list-cell cell-editor-button right"><span class="fa fa-pencil"></span> Edit</span>-->
+                      <!--</li>-->
+
+                    <!--<li class="browser-list-item">-->
+                            <!--<span class="browser-list-cell param-title">Price</span>-->
+                            <!--<span id="item-price-txt" class="browser-list-cell"></span>-->
+                            <!--<span class="browser-list-cell cell-editor-button right"><span class="fa fa-pencil"></span> Edit</span>-->
+                    <!--</li>-->
+
+                    <!--<li class="browser-list-item">-->
+                            <!--<span class="browser-list-cell param-title">Quantity</span>-->
+                            <!--<span id="item-quantity-txt" class="browser-list-cell param-value"></span>-->
+                            <!--<span id="item-quantity-edit" class="browser-list-cell param-value hidden"><input id="item-quantity-entry" class="browser-edit-input"></span>-->
+                            <!--<span id="item-quantity-button" class="browser-list-cell param-control">-->
+                                <!--<div id="edit-butt" class="right"><span><span class="fa fa-pencil"></span> Edit</span></div>-->
+                                <!--<div id="control-butt" class="right hidden"><button class="button">Cancel</button><button class="button primary">Save</button></div>-->
+                            <!--</span>-->
+                     <!--</li>-->
+
+                    <!--<li class="browser-list-item">-->
+                            <!--<span class="browser-list-cell param-title">Units</span>-->
+                            <!--<span id="item-units-txt" class="browser-list-cell"></span>-->
+                            <!--<span class="browser-list-cell cell-editor-button right"><span class="fa fa-pencil"></span> Edit</span>-->
+                  <!--</li>-->
+
+                    <!--<li class="browser-list-item">-->
+                            <!--<span class="browser-list-cell param-title">Ordering department</span>-->
+                            <!--<span id="item-department-txt" class="browser-list-cell"></span>-->
+                            <!--<span class="browser-list-cell cell-editor-button right"><span class="fa fa-pencil"></span> Edit</span>-->
+                       <!--</li>-->
+
+
+
+                </ul>
+            <!--</div>-->
+        <!--</div>-->
+        <ul id="param-template-txt" class="hidden">
+            <li class="browser-list-item">
+                <span class="browser-list-cell param-title"></span>
+                <span id="item-url-txt" class="browser-list-cell"></span>
+            </li>
+        </ul>
+    </div>
+</div>

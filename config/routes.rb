@@ -19,6 +19,7 @@ Rails.application.routes.draw do
 
   get 'pages/dashboard'
   get 'pages/browser'
+  get 'pages/import'
 
   get 'activities/index'
   #get 'login' => 'user_sessions#new', :as => :login

@@ -10,7 +10,6 @@
       console.log "AJAX Error: #{textStatus}"
     success: (data, textStatus, jqXHR) ->
       console.log "Successful AJAX call"
-      console.log data
 
       i = 0
       $("div#activity-list").empty()
@@ -28,3 +27,4 @@
         $("#"+newid+" div div.activity-title").html(act['activity_title'])
         $("#"+newid+" div div.activity-details span").html(act['activity_detail'])
         i += 1
+

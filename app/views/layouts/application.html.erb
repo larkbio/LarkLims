@@ -28,13 +28,6 @@
                     <%= link_to 'Browse', controller: 'pages', action: 'browser' %>
                 </li>
 
-                <li class="header-nav-item">
-                    <%= link_to 'Import', controller: 'populate', action: 'index' %>
-                </li>
-                <li class="header-nav-item">
-                    <%= link_to 'Export', controller: 'populate', action: 'export', format: 'xls' %>
-                </li>
-
             </ul>
             <ul class="nav-right">
                 <% if current_user %>
@@ -45,7 +38,9 @@
                     </li>
                 <% end %>
                 <li class="header-nav-item">
-                    <i class="fa fa-cog"></i>
+                    <%= link_to 'import', controller: 'pages', action: 'import' do %>
+                        <i class="fa fa-cog"></i>
+                    <% end %>
                 </li>
                 <% if current_user %>
                     <li class="header-nav-item">

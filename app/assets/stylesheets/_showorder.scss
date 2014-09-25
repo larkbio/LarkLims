@@ -1,0 +1,110 @@
+#show-order-table {
+  margin-top: 0px;
+  padding-top: 20px;
+  border-top: 1px solid #ddd;
+}
+
+#show-order-table dl.form {
+  border-top: 1px solid #ddd;
+}
+//#show-order-table span {
+//  font-size: 15px;
+//  color: #333;
+//}
+
+#show-order-table span.param-title {
+  font-weight: bold;
+  font-size: 15px;
+  color: #333;
+  width: 25%;
+  height: 32px;
+  vertical-align: middle;
+}
+#show-order-table span.param-value {
+  font-size: 15px;
+  color: #333;
+  width: 50%;
+  vertical-align: middle;
+}
+#show-order-table span.param-control {
+  width: 25%;
+  vertical-align: middle;
+}
+
+
+div.control-butt {
+  box-sizing: border-box;
+  display: block;
+  overflow: visible;
+}
+
+.edit-butt{
+  font-size: 13px;
+  color: #666;
+}
+.edit-butt span {
+  font-size: 13px;
+  color: #666;
+}
+
+.button.cancel {
+  background-image: linear-gradient(#fcfcfc, #eee);
+  background-repeat: repeat-x;
+  border: 1px solid #d5d5d5;
+  border-radius: 3px;
+  background-color: #eee;
+}
+.button.cancel:hover {
+  background-image: none;
+}
+
+.button.save {
+  margin-left: 4px;
+}
+#show-order-table span.cell-control-buttons {
+  width: 25%;
+}
+
+.group-inner {
+  padding: 1px 10px;
+  background: #fff;
+  border: 1px solid #d8d8d8;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  color: #666;
+  font-size: 13px;
+}
+
+
+#show-order-table a {
+  font-size: 15px;
+  color: #4183c4;
+  text-decoration: none;
+  cursor: pointer;
+}
+#show-order-table a:visited {
+  color: #4183c4;
+}
+#show-order-table a:hover {
+  color: #4183c4;
+  text-decoration: underline;
+  background-color: #fff;
+}
+
+.browser-edit-input {
+  height: 28px;
+  box-sizing: border-box;
+  padding: 7px 8px;
+  font-size: 13px;
+  color: #333;
+  vertical-align: middle;
+  background-color: #fff;
+  background-repeat: no-repeat;
+  background-position: right center;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  outline: none;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.075);
+
+  width: 80%;
+}
