@@ -55,7 +55,6 @@
       console.log "AJAX Error: #{textStatus}"
     success: (data, textStatus, jqXHR) ->
       console.log "Successful AJAX call, product params for product "+product_id
-      console.log data
 
       $("<div id=\"params-holder-new\" class=\"hidden\"></div>").insertAfter($("#params-holder"))
       i = 0
@@ -109,8 +108,6 @@
     $("#new-order-table").addClass("hidden")
     load_users()
 
-
-
   $("#new-order-button").click (event) ->
     event.preventDefault()
     delete_product_params()
@@ -129,7 +126,6 @@
         console.log "AJAX Error: #{textStatus}"
       success: (data, textStatus, jqXHR) ->
         console.log "Successful AJAX call"
-        console.log data
 
         first_product = -1
         i = 0

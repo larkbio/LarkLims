@@ -10,7 +10,6 @@
       console.log "AJAX Error: #{textStatus}"
     success: (data, textStatus, jqXHR) ->
       console.log "Successful AJAX call"
-      console.log data
 
       i = 0
       $("#products-table").empty()

@@ -233,3 +233,21 @@ a.browser-list-cell-title-link {
 .browser-list-cell:last-child {
   border-right: 1px solid #e5e5e5;
 }
+
+
+//
+
+.error-box h3{
+  color: red;
+}
+
+.error-box a {
+  color: #999;
+  background-color: transparent;
+  text-decoration: none;
+}
+.error-box a:hover {
+  background-color: transparent;
+  color: $hover_color;
+  text-decoration: none;
+}
