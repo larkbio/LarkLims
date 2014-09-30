@@ -13,11 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20140912093739) do
 
-  create_table "datafiles", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "orders", force: true do |t|
     t.datetime "order_date"
     t.string   "catalog_number"

@@ -12,7 +12,7 @@
 //  color: #333;
 //}
 
-#show-order-table span.param-title {
+span.param-title {
   font-weight: bold;
   font-size: 15px;
   color: #333;
@@ -20,15 +20,19 @@
   height: 32px;
   vertical-align: middle;
 }
-#show-order-table span.param-value {
+span.param-value {
   font-size: 15px;
   color: #333;
   width: 50%;
   vertical-align: middle;
 }
-#show-order-table span.param-control {
+span.param-control {
   width: 25%;
   vertical-align: middle;
+}
+
+span.cell-control-buttons {
+  width: 25%;
 }
 
 
@@ -60,9 +64,6 @@ div.control-butt {
 
 .button.save {
   margin-left: 4px;
-}
-#show-order-table span.cell-control-buttons {
-  width: 25%;
 }
 
 .group-inner {

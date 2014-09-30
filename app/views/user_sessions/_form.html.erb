@@ -1,22 +1,25 @@
 <% content_for :title, "LarkLims - Sign In" %>
 
-<div class="signin-section">
+<div id="signin-section">
 
     <div class="container clearfix">
-        <%= form_tag user_sessions_path, :method => :post, :class => 'form-signin' do %>
+        <%= form_tag user_sessions_path, :method => :post, :id => 'form-signin' do %>
 
-            <dl class="form">
+            <dl class="form-si">
                   <dd class="field">
-                      <input class="textfield" type="text" autofocus="" placeholder="E-mail" name="email"></input>
+                      <input class="textfield" type="text" autofocus="" placeholder="E-mail" name="email">
                   </dd>
             </dl>
-            <dl class="form">
+            <dl class="form-si">
                   <dd class="field">
-                      <input class="textfield" type="password" placeholder="Password" name="password"></input>
+                      <input class="textfield" type="password" placeholder="Password" name="password" onkeydown="if (event.keyCode == 13) document.getElementById('form-signin').submit();">
                   </dd>
             </dl>
-            <%= button_tag "Login", :class => "button primary button-block" %>
-
+            <dl class="form-si">
+                <dd class="field">
+                    <a class="button primary button-block" onclick="document.getElementById('form-signin').submit()">Login</a>
+                </dd>
+            </dl>
         <% end %>
 
         <h1 class="heading">

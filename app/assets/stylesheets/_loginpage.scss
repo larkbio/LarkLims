@@ -1,7 +1,7 @@
 @import "config";
 // Sign In page
 
-.signin-section {
+#signin-section {
   text-shadow: 0px 1px 3px #222;
   background: url('') repeat scroll center center #202021;
   padding-top: 80px;
@@ -26,29 +26,29 @@
   color: #FFF;
 }
 
-.form-signin {
+#form-signin {
   float: right;
   width: 320px;
   margin-left: 40px;
   padding-top: 50px;
 }
 
-.form-signin dl.form {
+dl.form-si {
   position: relative;
   margin-top: 0px;
   margin-bottom: 10px;
 }
 
-dl.form {
+dl.form-si {
   margin: 15px 0;
   box-sizing: border-box;
 }
-dd {
+dl.form-si dd {
   margin-left: 0px;
   box-sizing: border-box;
 }
 
-dd.field input{
+dl.form-si dd.field input{
 
   width: 100%;
   margin-right: 0px;
@@ -78,14 +78,14 @@ dd.field input{
   box-shadow: inset 0 1px 2px rgba(0,0,0,0.075);
 }
 
-.form-signin .button {
-  border: 0px none;
+dl.form-si dd a.button {
+  border: 1px none !important;
   padding: 10px;
   font-size: 16px;
   border-radius: 5px;
 }
 
-.button-block {
+dl.form-si dd a.button-block {
   display: block;
   width: 100%;
   text-align: center;
