@@ -14,10 +14,21 @@
 #new-order-table span.param-edit {
   font-size: 15px;
   color: #333;
-  width: 75%;
+  width: 65%;
   vertical-align: middle;
 }
 
+#new-order-table span.param-control {
+  width: 5%;
+}
+#new-order-table input.browser-edit-input {
+  width: 95%;
+}
+
+#new-order-table form {
+  display: table;
+  width: 100%;
+}
 // ------------------------old stuff down here
 
 

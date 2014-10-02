@@ -1,11 +1,9 @@
 <div id="new-order-table" class="hidden">
     <div class="boxed-group right">
         <h3>New order</h3>
-        <form id="new-order-form">
-            <ul class="browser-list">
 
-              <input id="product-id-holder" name="order[product_id]" type="hidden">
-
+        <ul id="new-order-ul" class="browser-list">
+            <form>
                 <li class="browser-list-item">
                   <span class="browser-list-cell param-title">Product</span>
                   <span id="order-product-edit" class="browser-list-cell param-edit">
@@ -13,8 +11,11 @@
                           <option>ABC</option>
                       </select>
                   </span>
+                    <span class="browser-list-cell param-control"></span>
                </li>
-
+            </form>
+            <form id="new-order-form">
+                <input id="product-id-holder" name="order[product_id]" type="hidden">
                 <% arr_names = [ "comment", "ordered_from", "price", "quantity", "units", "department"]
                    arr_titles = ["Description", "Ordered from", "Price", "Quantity", "Units", "Ordering department"]
                    for i in 0..(arr_names.size-1)
@@ -24,20 +25,19 @@
                               <span class="browser-list-cell param-edit">
                                   <input class="browser-edit-input" id="item-comment" name="order[<%= arr_names[i] %>]" size="30" type="text">
                                </span>
-                              <!--<span class="browser-list-cell param-control"></span>-->
+                              <span class="browser-list-cell param-control"></span>
                       </li>
                 <% end %>
-
-            </ul>
-            <button id="new-order-submit-button" type="submit" class="button primary">Create order</button>
-        </form>
-
+            </form>
+        </ul>
+        <button id="new-order-submit-button" type="submit" class="button primary right">Create order</button>
         <div id="param-template" class="hidden">
-            <li class="browser-list-item">
+            <li class="browser-list-item dynamic">
                 <span class="browser-list-cell param-title"></span>
                 <span class="browser-list-cell param-edit">
                     <input class="browser-edit-input" id="item-tmp" size="30" type="text">
                 </span>
+                <span class="browser-list-cell param-control"><i class="fa fa-paperclip"></i></span>
             </li>
         </div>
     </div>

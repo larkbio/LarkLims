@@ -29,6 +29,41 @@
         i = i+1
       add_product_params(first_product)
 
+@delete_product_params = () ->
+  $("#new-order-ul li.dynamic").remove()
+
+@add_product_params = (product_id) ->
+  $("#product-id-holder").val(product_id)
+  $.ajax '/products/'+product_id+'/product_params',
+    type: 'GET'
+    dataType: 'json'
+    error: (jqXHR, textStatus, errorThrown) ->
+      console.log "AJAX Error: #{textStatus}"
+    success: (data, textStatus, jqXHR) ->
+      console.log "Successful AJAX call, product params for product "+product_id
+      console.log data
+
+      delete_product_params()
+
+      i = 0
+      for param in data
+        console.log param.key
+        new_param = $("#param-template").children().first().clone()
+        new_id =  "par-" + i
+        new_param.attr('id', new_id)
+
+        new_param.insertAfter($("#new-order-ul li:first"))
+        $("#"+new_id+" span:first").html(param.name)
+        $("#"+new_id+" span:nth-child(2) input").attr('id', new_id+"-input")
+        $("#"+new_id+" span:nth-child(2) input").attr('name', param.id)
+        i = i + 1
+
+      $("#params-holder").addClass("hidden")
+      $("#params-holder-new").removeClass("hidden")
+      $("#params-holder").remove()
+      $("#params-holder-new").attr("id", "params-holder")
+
+
 @new_order_submit_handler = (event) ->
   event.preventDefault()
   values = $("#new-order-form").serialize()
@@ -43,9 +78,11 @@
       console.log "CREATE ORDER  Successful AJAX call"
       console.log data
 
-      for item in $("#params-holder>dl>dd input")
+      for item in $("#new-order-ul li.dynamic span input")
+
         param_id = item["name"]
         value = item.value
+        console.log "setting value "+param_id+" -> "+value+" data_id="+data.id
         $.ajax "/orders/"+data.id+"/product_params/"+param_id,
           async: false,
           type: 'PATCH',
@@ -56,5 +93,5 @@
 
           success: (data, textStatus, jqXHR) ->
             console.log "PATHCH ORDER  Successful AJAX call"
-      window.location.assign( "/pages/browser")
+#      window.location.assign( "/pages/browser")
 

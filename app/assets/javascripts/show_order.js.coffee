@@ -55,11 +55,17 @@
           $("#order-units-txt").html(data.units)
           $("#order-department-txt").html(data.department)
           shorturl = data.url
+          fullurl = data.url
+          if shorturl == null
+            shorturl = ""
+            fullurl = ""
+
           maxlen = 45
           if shorturl.length > maxlen
             shorturl = shorturl.substr(0, maxlen)+"..."
-          $("#order-url-txt").html(shorturl)
-          $("#order-url-txt").attr("href", data.url)
+          $("#order-url-txt").html("<a target=\"_blank\"></a>")
+          $("#order-url-txt a").html(shorturl)
+          $("#order-url-txt a").attr("href", fullurl)
 
 show_param_editor = (prefix, param_name) ->
   $(prefix+"-"+param_name+"-txt").addClass("hidden")

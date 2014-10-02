@@ -4,7 +4,13 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
   def index
-    @orders = Order.order('updated_at DESC').all
+    lim = params[:limit].to_i
+    if lim>0 and lim<1000
+      @orders = Order.order('updated_at DESC').limit(lim)
+    else
+      @orders = Order.order('updated_at DESC').all
+    end
+
     # TODO separate this into a new action, or something...
     @num_opened = Order.where("status=0").size
     @num_closed = Order.where("status=1").size

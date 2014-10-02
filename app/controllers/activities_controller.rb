@@ -7,7 +7,7 @@ class ActivitiesController < ApplicationController
       usr = user_path(o.user)
       opath = order_url(o)
       url_short = o.url
-      if o.url.size>60
+      if o.url and o.url.size>60
         url_short = o.url[0..60]+"..."
       end
       title = "<a href=\"#{usr}\">#{o.user.name}</a>\n<span>added order</span>\n<a href=\"#{opath}\">#{o.comment}</a> (#{o.product.name})\n"
