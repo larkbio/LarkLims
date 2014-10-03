@@ -32,6 +32,8 @@
         <p id="alert"><%= flash[:alert] %></p>
     </div>
 
+    <input id="before_date" type="hidden">
+    <input id="before_order_id" type="hidden">
     <!-- this template gets copied and filled for each action by the ajax function load_activities (activities.js.coffee) -->
     <div id="activity_template" class="hidden">
         <div class="activity">
@@ -55,5 +57,5 @@
 </div>
 
 <script type="text/javascript">
-    load_activities();
+    dashboard_loaded()
 </script>

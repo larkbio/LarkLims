@@ -130,3 +130,8 @@
   text-decoration: underline;
   background-color: #fff;
 }
+
+// otherwise half of the spinner is not visible
+#activity-list div.progress-sign {
+  padding-bottom: 30px;
+}
