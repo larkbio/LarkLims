@@ -1,4 +1,5 @@
 @browser_menu = () ->
+  $(document).off('scroll')
   $("#orders-button").click ->
     unselect_meus()
     $("#browser-list-header-tab").removeClass("hidden")
@@ -44,8 +45,7 @@
     new_order_handler(event)
     $("#new-order-button").addClass("hidden")
 
-  $("#new-order-submit-button").click (event) ->
-    new_order_submit_handler(event)
+  $("#new-order-submit-button").click (event) -> new_order_submit_handler(event)
 
   $("ul#orders-table").delegate("li div.browser-list-cell a.browser-list-cell-title-link", "click", show_order_handler )
 
@@ -54,6 +54,12 @@
   $("#show-order-table").delegate( "button.button.cancel", "click", cancel_order_param_handler )
 
   $("#show-order-table").delegate( "button.button.save", "click", save_order_param_handler )
+
+  $("#browser-select-all").click () -> all_orders_toggled()
+
+  $("#delete-order").click () -> delete_selected_orders()
+
+  $("#orders-table").delegate("li label input", "click", order_selected )
 
 @unselect_meus = () ->
   $("div.browser-subnav div.browser-links a").removeClass('selected')

@@ -11,8 +11,7 @@
     dataType: 'json',
     error: (jqXHR, textStatus, errorThrown) ->
       console.log "AJAX Error: #{textStatus}"
-      $("#orders-table").addClass("hidden")
-      $("#error-message").removeClass("hidden")
+      show_error('Could not show order '+order_url)
 
     success: (data, textStatus, jqXHR) ->
       $("#show-order-table li.product-param").remove()

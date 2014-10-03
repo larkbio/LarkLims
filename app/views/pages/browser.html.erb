@@ -41,6 +41,11 @@
                         </span>
                     </div>
                 </div>
+                <div id="browser-select-controls" class="browser-list-header-toggle right hidden">
+                    <span id="delete-order" class="button-link select-menu-button">
+                            Delete
+                    </span>
+                </div>
                 <div id="browser-products-header" class="browser-list-header-toggle hidden">
                     <a class="button-link selected">Products</a>
                 </div>
@@ -67,7 +72,7 @@
         <ul>
             <li id="list_item_template" class="browser-list-item">
                 <label class="browser-list-cell browser-list-cell-checkbox">
-                    <input type="checkbox">
+                    <!--<input type="checkbox">-->
                 </label>
                 <div class="browser-list-cell">
                     <a class="browser-list-cell-title-link" href="#"></a>
@@ -91,6 +96,8 @@
                 </div>
             </li>
         </ul>
+        <input type="hidden" id="current-user-id" value="<%= current_user.id %>">
+        <input type="hidden" id="current-user-adm" value="<%= current_user.admin? %>">
     </div>
     <div>
         <p id="notice"><%= flash[:notice] %></p>
@@ -101,5 +108,4 @@
 <script type="text/javascript">
     browser_menu();
     load_orders();
-
 </script>
