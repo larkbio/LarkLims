@@ -95,5 +95,9 @@ scroll_handler = (event) ->
   console.log "dashboard loading"
   load_activities()
   @last_top = 0
+  @timeout_id = null
   $(document).scroll (event) ->
-    scroll_handler(event)
+    if @timeout_id
+      clearTimeout(@timeout_id)
+    @timeout_id = setTimeout( scroll_handler, 100)
+
