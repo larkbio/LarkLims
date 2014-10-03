@@ -47,7 +47,7 @@
   $("#new-order-submit-button").click (event) ->
     new_order_submit_handler(event)
 
-  $("ul#orders-table").delegate("li div.browser-list-cell", "click", show_order_handler )
+  $("ul#orders-table").delegate("li div.browser-list-cell a.browser-list-cell-title-link", "click", show_order_handler )
 
   $("#show-order-table").delegate( "div.edit-butt", "click", edit_order_param_handler )
 

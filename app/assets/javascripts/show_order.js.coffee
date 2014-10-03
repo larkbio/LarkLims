@@ -1,6 +1,9 @@
 @show_order_handler = (event) ->
   event.preventDefault()
   a_clicked = event.toElement
+  if a_clicked.nodeName == "SPAN"
+    a_clicked = a_clicked.parentNode
+
   order_url = a_clicked.href
 
   $.ajax order_url,
