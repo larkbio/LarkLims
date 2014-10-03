@@ -7,6 +7,9 @@
     $("#orders-button").addClass('selected')
     $("#new-order-button").removeClass('hidden')
     $("#new-order-table").addClass("hidden")
+    $("#browser-select-all").removeClass("hidden")
+    $("#browser-filter-controls").removeClass("hidden")
+    $("#browser-products-header").addClass("hidden")
     load_orders()
 
   $("#products-button").click ->
@@ -15,6 +18,9 @@
     $("#products-button").addClass('selected')
     $("#products-table").removeClass('hidden')
     $("#new-order-table").addClass("hidden")
+    $("#browser-select-all").addClass("hidden")
+    $("#browser-filter-controls").addClass("hidden")
+    $("#browser-products-header").removeClass("hidden")
     load_products()
 
   $("#users-button").click ->
@@ -23,6 +29,9 @@
     $("#users-button").addClass('selected')
     $("#users-table").removeClass('hidden')
     $("#new-order-table").addClass("hidden")
+    $("#browser-filter-controls").addClass("hidden")
+    $("#browser-products-header").addClass("hidden")
+    $("#browser-select-all").removeClass("hidden")
     load_users()
 
   $("#product-name-sel").change ->

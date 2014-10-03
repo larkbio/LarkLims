@@ -13,20 +13,22 @@
             <div class="browser-links left">
                 <a id="orders-button" class="browser-subnav-item selected">Orders</a>
                 <a id="products-button" class="browser-subnav-item">Products</a>
-                <a id="users-button" class="browser-subnav-item">Users</a>
+                <% if current_user.admin? %>
+                    <a id="users-button" class="browser-subnav-item">Users</a>
+                <% end %>
             </div>
         </div>
 
         <div id="browser-list-header-tab" class="browser-list-header clearfix">
             <label class="browser-list-header-select-all">
-                <input type="checkbox" />
+                <input id="browser-select-all" type="checkbox" />
             </label>
             <div class="browser-list-filters">
                 <div id="orders-title" class="browser-list-header-toggle states left">
                     <a id="order-stat-open" href="#" class="button-link selected"><i class="fa fa-arrow-circle-o-up"></i> Open</a>
                     <a id="order-stat-closed" href="#" class="button-link"><i class="fa fa-check"></i> Completed</a>
                 </div>
-                <div class="browser-list-header-toggle right">
+                <div id="browser-filter-controls" class="browser-list-header-toggle right">
                     <div class="left select-menu">
                         <span class="button-link select-menu-button">
                             Status
@@ -38,6 +40,9 @@
                             Sort
                         </span>
                     </div>
+                </div>
+                <div id="browser-products-header" class="browser-list-header-toggle hidden">
+                    <a class="button-link selected">Products</a>
                 </div>
             </div>
         </div>
@@ -63,6 +68,20 @@
             <li id="list_item_template" class="browser-list-item">
                 <label class="browser-list-cell browser-list-cell-checkbox">
                     <input type="checkbox">
+                </label>
+                <div class="browser-list-cell">
+                    <a class="browser-list-cell-title-link" href="#"></a>
+                    <div class="browser-meta">
+                        <span></span>
+                    </div>
+                </div>
+            </li>
+
+            <li id="list_item_template2" class="browser-list-item">
+                <label class="browser-list-cell browser-list-cell-checkbox">
+                    <div class="lab">
+                        <i class="fa fa-tags"></i>
+                    </div>
                 </label>
                 <div class="browser-list-cell">
                     <a class="browser-list-cell-title-link" href="#"></a>

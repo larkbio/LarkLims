@@ -26,7 +26,7 @@
           new_order.insertAfter($("ul#orders-table").children().last())
         i = i+1
 
-        $("#"+new_id+" div a.browser-list-cell-title-link").html(order.comment+" ("+order.product_name+")")
+        $("#"+new_id+" div a.browser-list-cell-title-link").html(order.comment+" <span class=\"product-label qb"+(order.product_id % 12)+"\">"+order.product_name+"</span>")
         $("#"+new_id+" div a.browser-list-cell-title-link").attr("href", "/orders/"+order.id)
         $("#"+new_id+" div div.browser-meta span").html(
             "Ordered "+order.order_age+" ago by <a href='/users/"+order.owner_id+"'>"+order.owner+"</a>")

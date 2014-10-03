@@ -14,7 +14,7 @@
       i = 0
       $("#products-table").empty()
       for prod in data
-        new_prod = $("#list_item_template").clone()
+        new_prod = $("#list_item_template2").clone()
         new_id =  "prod-" + i
         new_prod.attr('id', new_id)
         if i == 0
@@ -23,6 +23,7 @@
           new_prod.insertAfter($("ul#products-table").children().last())
         i = i+1
 
+        $("#"+new_id+" label div.lab").addClass("q"+(prod.id % 12))
         $("#"+new_id+" div a.browser-list-cell-title-link").html(prod.name)
         $("#"+new_id+" div a.browser-list-cell-title-link").attr("href", "/products/"+prod.id)
         $("#"+new_id+" div div.browser-meta span").html(
