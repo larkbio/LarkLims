@@ -18,7 +18,8 @@ namespace :lims do
                     email: 'admin@admin.hu',
                     password: 'admin',
                     password_confirmation: 'admin',
-                    admin: true)
+                    admin: true,
+                    active: true)
 
     o = Order.create(order_date: '',
                      catalog_number: '',
@@ -67,7 +68,8 @@ namespace :lims do
                     email: 'admin@admin.hu',
                     password: 'admin',
                     password_confirmation: 'admin',
-                    admin: true)
+                    admin: true,
+                    active: true)
   end
 
   def create_users(user_num = 40)

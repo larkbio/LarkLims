@@ -20,6 +20,9 @@
                     <a class="button primary button-block" onclick="document.getElementById('form-signin').submit()">Login</a>
                 </dd>
             </dl>
+            <% if !current_user %>
+                <%= link_to "Register", new_user_path %>
+            <% end %>
         <% end %>
 
         <h1 class="heading">

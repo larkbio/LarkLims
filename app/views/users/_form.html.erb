@@ -1,39 +1,73 @@
-<%= form_for(@user) do |f| %>
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+<% content_for :title, "LarkLims - Register" %>
 
-      <ul>
-      <% @user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<div id="signin-section">
+
+    <div class="container clearfix">
+
+        <%= form_for @user,:html => { :id => "form-signin" }  do |f| %>
+            <% if @user.errors.any? %>
+                <div id="error_explanation">
+                    <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+                    <ul>
+                        <% @user.errors.full_messages.each do |message| %>
+                            <li><%= message %></li>
+                        <% end %>
+                    </ul>
+                </div>
+            <% end %>
+
+            <dl class="form-si">
+                <dd class="field">
+                    <%= f.text_field 'name', :class => "textfield", :type =>"text", :autofocus => "", :placeholder => "Name" %>
+                </dd>
+            </dl>
+
+            <dl class="form-si">
+                <dd class="field">
+                    <%= f.text_field 'email', :class => "textfield", :type =>"text", :placeholder => "E-mail" %>
+                </dd>
+            </dl>
+
+            <dl class="form-si">
+                <dd class="field">
+                    <%= f.password_field 'password', :class => "textfield", :type =>"password", :placeholder => "Password" %>
+                </dd>
+            </dl>
+            <dl class="form-si">
+                <dd class="field">
+                    <%= f.password_field 'password_confirmation', :class => "textfield", :type =>"password", :placeholder => "Password confirmation" %>
+                </dd>
+            </dl>
+            <dl class="form-si">
+                <dd class="field">
+                    <a class="button primary button-block" onclick="document.getElementById('form-signin').submit()">Register</a>
+                </dd>
+            </dl>
+
+            <% if !current_user %>
+                <%= link_to "Login", login_path %>
+            <% end %>
+        <% end %>
+        <h1 class="heading">
+            LIMS<br/> simpler than ever.
+        </h1>
+
+        <p class="subheading">
+            Track your lab orders, collaborate with your collegues.
+        </p>
     </div>
-  <% end %>
+</div>
+<div class="welcome-section">
+    <div class="container">
+        <h1>Why you will love LarkLims.</h1>
 
+        <p class="welcome-sub">Simple usage supporting all your workflows...</p>
+    </div>
+</div>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :email %><br>
-    <%= f.text_field :email %>
-  </div>
+<div>
+    <p id="notice"><%= flash[:notice] %></p>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password %>
-   </div>
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation %>
-  </div>
-  <div class="field">
-    <%= f.label :admin %><br>
-    <%= f.check_box :admin %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+    <p id="alert"><%= flash[:alert] %></p>
+</div>

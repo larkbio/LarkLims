@@ -7,8 +7,10 @@
         <div class="columns clearfix">
             <div class="column one-fourth">
                 <h1>
-                    <span class="user-fullname"><%= @user.name %></span>
-                    <span class="username"><%= @user.email %></span>
+                    <% if current_user %>
+                        <span class="user-fullname"><%= current_user.name %></span>
+                        <span class="username"><%= current_user.email %></span>
+                    <% end %>
                 </h1>
             </div>
             <div class="column three-fourths">

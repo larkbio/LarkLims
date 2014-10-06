@@ -5,16 +5,22 @@ class UserSessionsController < ApplicationController
   end
 
   def create
-    if @user = login(params[:email], params[:password])
-      redirect_back_or_to(controller: 'pages', action: 'dashboard', notice: 'Login successful')
+    @user = User.where(email: params[:email]).first
+    if @user && @user.active
+      if @user = login(params[:email], params[:password])
+        redirect_back_or_to(controller: 'pages', action: 'dashboard', notice: 'Login successful')
+      else
+        flash.now[:alert] = 'Login failed'
+        render action: 'new'
+      end
     else
-      flash.now[:alert] = 'Login failed'
-      render action: 'new'
+      @user = nil
+      redirect_to login_path, alert: "Invalid or inactive user"
     end
   end
 
   def destroy
     logout
-    redirect_to(controller: 'pages', action: 'dashboard', notice: 'Logged out!')
+    redirect_to login_path, notice: "Logged out!"
   end
 end
