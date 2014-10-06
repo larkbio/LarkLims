@@ -2,10 +2,15 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-@load_orders = (page)  ->
+@load_orders = (page, created_by=null)  ->
   if not page
     page = 1
-  $.ajax '/orders?page='+page,
+  if created_by
+    created_by = "&created_by="+created_by
+  else
+    created_by = ""
+
+  $.ajax '/orders?page='+page+created_by,
     type: 'GET'
     dataType: 'json'
     error: (jqXHR, textStatus, errorThrown) ->
@@ -38,7 +43,11 @@
         $("#"+new_id+" div a.browser-list-cell-title-link").html(order.comment+" <span class=\"product-label qb"+(order.product_id % 12)+"\">"+order.product_name+"</span>")
         $("#"+new_id+" div a.browser-list-cell-title-link").attr("href", "/orders/"+order.id)
         $("#"+new_id+" div div.browser-meta span").html(
-            "Ordered "+order.order_age+" ago by <a href='/users/"+order.owner_id+"'>"+order.owner+"</a>")
+            "Ordered "+order.order_age+" ago by <a id='"+new_id+"-owner-"+order.owner_id+"' class=\"user-filter-link\" href='#'>"+order.owner+"</a>")
+        console.log order
+        console.log "created by: "+order.owner+"("+order.owner_id+")"
+
+      $("ul#orders-table").delegate("a.user-filter-link", "click", userfilter_clicked_handler)
 
       console.log paging
       pagenum = paging['pagenum']
@@ -66,6 +75,14 @@
       $("#order-last-page").click (event) ->
         event.preventDefault()
         load_orders(pagenum)
+
+@userfilter_clicked_handler = () ->
+  console.log "userfilter_clicked_handler()"
+  event.preventDefault()
+  a_clicked = event.toElement
+  owner_id = a_clicked.id.split("-")[3]
+  console.log "filtering for user: "+owner_id
+  load_orders(1, owner_id)
 
 @all_orders_toggled = (event) ->
   if $("#browser-select-all").prop('checked')

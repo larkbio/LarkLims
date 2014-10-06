@@ -12,7 +12,7 @@
       console.log "Successful AJAX call"
 
       i = 0
-      $("#products-table").empty()
+      $("#users-table").empty()
       for user in data
         new_user = $("#list_item_template").clone()
         new_id =  "usr-" + i

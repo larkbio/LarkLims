@@ -1,5 +1,6 @@
 @show_order_handler = (event) ->
   event.preventDefault()
+  $("#paging-row").addClass("hidden")
   a_clicked = event.toElement
   if a_clicked.nodeName == "SPAN"
     a_clicked = a_clicked.parentNode

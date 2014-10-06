@@ -4,11 +4,23 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
   def index
+    @orders = Order.all
+    uid = params[:created_by].to_i
+    u = User.find_by_id(uid)
+    if params[:created_by]
+      if u
+        @orders = @orders.where("user_id = #{uid}")
+      end
+    end
+    @orders = @orders.order('updated_at DESC').paginate(:page => params[:page])
 
-    @orders = Order.order('updated_at DESC').paginate(:page => params[:page])
     @currpage = params[:page].to_i
     @pagesize = Order.per_page
-    @pagenum = (Order.all.size.to_f/@pagesize).ceil()
+    if not u
+      @pagenum = (Order.all.size.to_f/@pagesize).ceil()
+    else
+      @pagenum = (Order.where("user_id = #{uid}").size.to_f/@pagesize).ceil()
+    end
 
     # TODO separate this into a new action, or something...
     @num_opened = Order.where("status=0").size
