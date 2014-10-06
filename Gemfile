@@ -43,3 +43,5 @@ gem 'font-awesome-sass'
 gem 'sorcery'
 gem 'spreadsheet'
 gem 'faker'
+
+gem 'will_paginate', '~> 3.0'

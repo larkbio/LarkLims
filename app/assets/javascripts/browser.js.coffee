@@ -11,7 +11,8 @@
     $("#browser-select-all").removeClass("hidden")
     $("#browser-filter-controls").removeClass("hidden")
     $("#browser-products-header").addClass("hidden")
-    load_orders()
+    load_orders(1)
+    $("#paging-row").removeClass("hidden")
 
   $("#products-button").click ->
     unselect_meus()
@@ -62,6 +63,7 @@
   $("#orders-table").delegate("li label input", "click", order_selected )
 
 @unselect_meus = () ->
+  $("#paging-row").addClass("hidden")
   $("div.browser-subnav div.browser-links a").removeClass('selected')
   $("#orders-title").addClass('hidden')
   $("#orders-table").addClass('hidden')

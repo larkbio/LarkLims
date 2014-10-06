@@ -2,20 +2,26 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-@load_orders = ()  ->
-  $.ajax '/orders?limit=10',
+@load_orders = (page)  ->
+  if not page
+    page = 1
+  $.ajax '/orders?page='+page,
     type: 'GET'
     dataType: 'json'
     error: (jqXHR, textStatus, errorThrown) ->
       console.log "AJAX Error: #{textStatus}"
-    success: (data, textStatus, jqXHR) ->
+    success: (result, textStatus, jqXHR) ->
       console.log "Successful AJAX call"
+      data = result['data']
+      paging = result['paging']
 
       $("#order-stat-open").html("<i class=\"fa fa-arrow-circle-o-up\"></i> "+data[0].num_opened+" Open")
       $("#order-stat-closed").html("<i class=\"fa fa-check\"></i> "+data[0].num_closed+" Completed")
 
       i = 0
       $("#orders-table").empty()
+      $("#paging-row").remove()
+
       for order in data
         new_order = $("#list_item_template").clone()
         new_id =  "ord-" + i
@@ -33,6 +39,33 @@
         $("#"+new_id+" div a.browser-list-cell-title-link").attr("href", "/orders/"+order.id)
         $("#"+new_id+" div div.browser-meta span").html(
             "Ordered "+order.order_age+" ago by <a href='/users/"+order.owner_id+"'>"+order.owner+"</a>")
+
+      console.log paging
+      pagenum = paging['pagenum']
+      $("<div id=\"paging-row\">
+          <a id=\"order-first-page\" href=\"#\">First</a>
+          <a id=\"order-prev-page\" href=\"#\">Prev</a>
+          <span> "+page+" / "+pagenum+" </span>
+          <a id=\"order-next-page\" href=\"#\">Next</a>
+          <a id=\"order-last-page\" href=\"#\">Last</a>
+      </div>").insertAfter($("ul#orders-table"))
+
+      prevpage = paging['currpage']-1
+      prevpage = Math.max(1, prevpage)
+      nextpage = paging['currpage']+1
+      nextpage = Math.min(pagenum, nextpage)
+      $("#order-prev-page").click (event) ->
+        event.preventDefault()
+        load_orders(prevpage)
+      $("#order-next-page").click (event) ->
+        event.preventDefault()
+        load_orders(nextpage)
+      $("#order-first-page").click (event) ->
+        event.preventDefault()
+        load_orders(1)
+      $("#order-last-page").click (event) ->
+        event.preventDefault()
+        load_orders(pagenum)
 
 @all_orders_toggled = (event) ->
   if $("#browser-select-all").prop('checked')

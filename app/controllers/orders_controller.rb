@@ -4,12 +4,11 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
   def index
-    lim = params[:limit].to_i
-    if lim>0 and lim<1000
-      @orders = Order.order('updated_at DESC').limit(lim)
-    else
-      @orders = Order.order('updated_at DESC').all
-    end
+
+    @orders = Order.order('updated_at DESC').paginate(:page => params[:page])
+    @currpage = params[:page].to_i
+    @pagesize = Order.per_page
+    @pagenum = (Order.all.size.to_f/@pagesize).ceil()
 
     # TODO separate this into a new action, or something...
     @num_opened = Order.where("status=0").size

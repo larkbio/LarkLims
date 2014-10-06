@@ -6,6 +6,8 @@ class Order < ActiveRecord::Base
   validates :user, presence: true
   before_save :default_values
 
+  self.per_page = 20
+
   def create_product_specific_params
     p "duplicate params called on:"
     p self
