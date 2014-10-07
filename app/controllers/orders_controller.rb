@@ -12,15 +12,26 @@ class OrdersController < ApplicationController
         @orders = @orders.where("user_id = #{uid}")
       end
     end
-    @orders = @orders.order('updated_at DESC').paginate(:page => params[:page])
+    if params[:status] and params.size<=6
+      if params[:status] == "open"
+        @orders = @orders.where("status = 0")
+      elsif params[:status] == "closed"
+        @orders = @orders.where("status = 1")
+      end
+    end
+
+    if params[:sort_by] and params[:sort_by]=="oldest"
+      @orders = @orders.order('updated_at')
+    else
+      @orders = @orders.order('updated_at DESC')
+    end
+
+    @orders = @orders.paginate(:page => params[:page])
 
     @currpage = params[:page].to_i
     @pagesize = Order.per_page
-    if not u
-      @pagenum = (Order.all.size.to_f/@pagesize).ceil()
-    else
-      @pagenum = (Order.where("user_id = #{uid}").size.to_f/@pagesize).ceil()
-    end
+
+    @pagenum = (@orders.count().to_f/@pagesize).ceil()
 
     # TODO separate this into a new action, or something...
     @num_opened = Order.where("status=0").size

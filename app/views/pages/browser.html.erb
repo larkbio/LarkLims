@@ -30,15 +30,55 @@
                 </div>
                 <div id="browser-filter-controls" class="browser-list-header-toggle right">
                     <div class="left select-menu">
-                        <span class="button-link select-menu-button">
+                        <span id="filter-status-button" class="button-link select-menu-button">
                             Status
                         </span>
-                        <span class="button-link select-menu-button">
-                            Created by
-                        </span>
-                        <span class="button-link select-menu-button">
+                        <div id="filter-status-modal" class="select-menu-modal-holder hidden">
+                            <div class="select-menu-modal">
+                                <div class="select-menu-header">
+                                    <span class="select-menu-title">Status</span>
+                                    <span class="right"><i class="fa fa-close"></i></span>
+                                </div>
+                                <div class="select-menu-list">
+                                    <div>
+                                        <a href="/" id="filter-status-button-open" class="select-menu-item">
+                                            <i class="fa fa-check select-menu-item-icon"></i>
+                                            <div class="select-menu-item-text">Open</div>
+                                        </a>
+                                        <a href="/" id="filter-status-button-closed" class="select-menu-item">
+                                            <i class="fa fa-check select-menu-item-icon"></i>
+                                            <div class="select-menu-item-text">Closed</div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="left select-menu">
+                        <span  id="filter-sort-button" class="button-link select-menu-button">
                             Sort
                         </span>
+                        <div id="filter-sort-modal" class="select-menu-modal-holder hidden">
+                            <div class="select-menu-modal">
+                                <div class="select-menu-header">
+                                    <span class="select-menu-title">Sort by</span>
+                                    <span class="right"><i class="fa fa-close"></i></span>
+                                </div>
+                                <div class="select-menu-list">
+                                    <div>
+                                        <a href="/" id="filter-sort-newest" class="select-menu-item selected">
+                                            <i class="fa fa-check select-menu-item-icon"></i>
+                                            <div class="select-menu-item-text">Newest</div>
+                                        </a>
+                                        <a href="/" id="filter-sort-oldest" class="select-menu-item">
+                                            <i class="fa fa-check select-menu-item-icon"></i>
+                                            <div class="select-menu-item-text">Oldest</div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div id="browser-select-controls" class="browser-list-header-toggle right hidden">
@@ -53,6 +93,12 @@
                     <a class="button-link selected">Users</a>
                 </div>
             </div>
+        </div>
+
+        <div class="hidden">
+            <input type="hidden" id="order-sort-direction">
+            <input type="hidden" id="order-status-filter">
+            <input type="hidden" id="order-user-filter" value="<%= @user_filter %>">
         </div>
         <ul id="orders-table" class="browser-list">
             <!--loaded dynamically by load_orders()-->
@@ -79,6 +125,7 @@
                     <!--<input type="checkbox">-->
                 </label>
                 <div class="browser-list-cell">
+                    <div class="order-status-indicator"></div>
                     <a class="browser-list-cell-title-link" href="#"></a>
                     <div class="browser-meta">
                         <span></span>
@@ -111,5 +158,9 @@
 
 <script type="text/javascript">
     browser_menu();
-    load_orders();
+    <% if @order_selected and @order_selected != "" %>
+        show_order("/orders/<%=@order_selected%>")
+    <% else %>
+        load_orders();
+    <% end %>
 </script>

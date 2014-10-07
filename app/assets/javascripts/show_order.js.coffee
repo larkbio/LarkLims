@@ -6,7 +6,10 @@
     a_clicked = a_clicked.parentNode
 
   order_url = a_clicked.href
+  show_order(order_url)
 
+@show_order = (order_url) ->
+  $("#paging-row").addClass("hidden")
   $.ajax order_url,
     type: 'GET',
     dataType: 'json',

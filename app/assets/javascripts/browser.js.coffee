@@ -3,6 +3,16 @@
 
   $("#orders-button").click ->
     unselect_menus()
+
+    # inactivate filters
+    $("#order-user-filter")[0].value = ""
+    $("#order-status-filter")[0].value = ""
+    $("#order-sort-direction")[0].value = ""
+    $("#filter-status-button-closed").removeClass("selected")
+    $("#filter-status-button-open").removeClass("selected")
+    $("#filter-sort-newest").addClass("selected")
+    $("#filter-sort-oldest").removeClass("selected")
+
     $("#orders-button").addClass('selected')
 
     $("#browser-products-header").addClass("hidden")
@@ -70,6 +80,64 @@
   $("#delete-order").click () -> delete_selected_orders()
 
   $("#orders-table").delegate("li label input", "click", order_selected )
+
+  close_modals = () ->
+    $("#filter-status-modal").addClass("hidden")
+    $("#filter-sort-modal").addClass("hidden")
+    $(document).off("click")
+
+  $("#filter-status-button").click (event) ->
+    console.log "status"
+    event.stopPropagation()
+    $("#filter-status-modal").removeClass("hidden")
+    $(document).click () -> close_modals()
+
+  $("#filter-sort-button").click () ->
+    event.stopPropagation()
+    $("#filter-sort-modal").removeClass("hidden")
+    $(document).click () -> close_modals()
+
+  $("#filter-status-button-open").click () ->
+    event.preventDefault()
+    $("#filter-status-button-closed").removeClass("selected")
+    $("#filter-status-button-open").addClass("selected")
+    $("#order-user-filter")[0].value = ""
+    $("#order-status-filter")[0].value = "open"
+    load_orders()
+
+  $("#filter-status-button-closed").click () ->
+    event.preventDefault()
+    $("#filter-status-button-closed").addClass("selected")
+    $("#filter-status-button-open").removeClass("selected")
+    $("#order-user-filter")[0].value = ""
+    $("#order-status-filter")[0].value = "closed"
+    load_orders()
+
+  $("#filter-sort-newest").click () ->
+    event.preventDefault()
+    $("#filter-sort-newest").addClass("selected")
+    $("#filter-sort-oldest").removeClass("selected")
+    $("#order-sort-direction")[0].value = ""
+    load_orders()
+
+  $("#filter-sort-oldest").click () ->
+    event.preventDefault()
+    $("#filter-sort-newest").removeClass("selected")
+    $("#filter-sort-oldest").addClass("selected")
+    $("#order-sort-direction")[0].value = "oldest"
+    load_orders()
+
+  $("#order-stat-open").click (event) ->
+    event.preventDefault()
+    $("#order-user-filter")[0].value = ""
+    $("#order-status-filter")[0].value = "open"
+    load_orders()
+
+  $("#order-stat-closed").click (event) ->
+    event.preventDefault()
+    $("#order-user-filter")[0].value = ""
+    $("#order-status-filter")[0].value = "closed"
+    load_orders()
 
 @unselect_menus = () ->
   $("#paging-row").addClass("hidden")

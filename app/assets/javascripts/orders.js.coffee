@@ -2,15 +2,24 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-@load_orders = (page, created_by=null)  ->
+@load_orders = (page)  ->
   if not page
     page = 1
-  if created_by
-    created_by = "&created_by="+created_by
+  if $("#order-user-filter")[0].value
+    created_by = "&created_by="+$("#order-user-filter")[0].value
   else
     created_by = ""
 
-  $.ajax '/orders?page='+page+created_by,
+  if $("#order-status-filter")[0].value
+    order_status="&status="+$("#order-status-filter")[0].value
+  else
+    order_status=""
+
+  order_sortby = ""
+  if $("#order-sort-direction")[0].value=="oldest"
+    order_sortby="&sort_by=oldest"
+
+  $.ajax '/orders?page='+page+created_by+order_status+order_sortby,
     type: 'GET'
     dataType: 'json'
     error: (jqXHR, textStatus, errorThrown) ->
@@ -40,16 +49,20 @@
         if ($("#current-user-adm")[0].value == "true") || ($("#current-user-id")[0].value == String(order.owner_id))
           $("#"+new_id+" label").html("<input type=\"checkbox\" id=\"del-"+order.id+"\">")
 
-        $("#"+new_id+" div a.browser-list-cell-title-link").html(order.comment+" <span class=\"product-label qb"+(order.product_id % 12)+"\">"+order.product_name+"</span>")
+        if order.status ==0
+          status_icon = "<i class=\"fa fa-clock-o\" style=\"color: #4183c4;\"></i> "
+        else
+          status_icon = "<i class=\"fa fa-check\" style=\"color: green;\"></i> "
+
+
+        $("#"+new_id+" div a.browser-list-cell-title-link").html(status_icon+order.comment+" <span class=\"product-label qb"+(order.product_id % 12)+"\">"+order.product_name+"</span>")
         $("#"+new_id+" div a.browser-list-cell-title-link").attr("href", "/orders/"+order.id)
+
         $("#"+new_id+" div div.browser-meta span").html(
             "Ordered "+order.order_age+" ago by <a id='"+new_id+"-owner-"+order.owner_id+"' class=\"user-filter-link\" href='#'>"+order.owner+"</a>")
-        console.log order
-        console.log "created by: "+order.owner+"("+order.owner_id+")"
 
       $("ul#orders-table").delegate("a.user-filter-link", "click", userfilter_clicked_handler)
 
-      console.log paging
       pagenum = paging['pagenum']
       $("<div id=\"paging-row\">
           <a id=\"order-first-page\" href=\"#\">First</a>
@@ -82,7 +95,8 @@
   a_clicked = event.toElement
   owner_id = a_clicked.id.split("-")[3]
   console.log "filtering for user: "+owner_id
-  load_orders(1, owner_id)
+  $("#order-user-filter")[0].value = owner_id
+  load_orders(1)
 
 @all_orders_toggled = (event) ->
   if $("#browser-select-all").prop('checked')
