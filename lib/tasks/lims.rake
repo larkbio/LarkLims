@@ -129,7 +129,7 @@ namespace :lims do
   end
 
   task populate_realistic: :environment do
-    #create_users()
+    create_users()
     create_orders()
 
     price = [50,75,100,2000,2300,5400,5700]
