@@ -30,7 +30,10 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to login_path, alert: "Successfull registration!" }
+        if ENV['RAILS_ENV'].to_s == 'production'
+          UserMailer.register_email(@user).deliver
+        end
+        format.html { redirect_to login_path, alert: "Account created successfully! Registration is in progress, you will get an email when the account is active" }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
@@ -56,7 +59,9 @@ class UsersController < ApplicationController
   def activate
     respond_to do |format|
       if @user.update_attribute(:active, !@user.active)
-        # UserMailer.welcome_email(@user).deliver
+        if ENV['RAILS_ENV'].to_s == 'production'
+          UserMailer.welcome_email(@user).deliver
+        end
         format.html {  redirect_to @user, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
