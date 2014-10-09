@@ -65,7 +65,7 @@
         new_param.insertAfter($("#new-order-ul li:first"))
         $("#"+new_id+" span:first").html(param.name)
         $("#"+new_id+" span:nth-child(2) input").attr('id', new_id+"-input")
-        $("#"+new_id+" span:nth-child(2) input").attr('name', param.id)
+        $("#"+new_id+" span:nth-child(2) input").attr('name', param.key)
         i = i + 1
 
       $("#params-holder").addClass("hidden")
@@ -73,6 +73,11 @@
       $("#params-holder").remove()
       $("#params-holder-new").attr("id", "params-holder")
 
+find_param_id = ( arr, key) ->
+  for item in arr
+    if item.key == key
+      return item.id
+  return -1
 
 @new_order_submit_handler = (event) ->
   event.preventDefault()
@@ -88,21 +93,33 @@
       console.log "CREATE ORDER  Successful AJAX call"
       console.log data
 
-      for item in $("#new-order-ul li.dynamic span input")
+      $.ajax '/orders/'+data.id+'/product_params',
+        type: 'GET',
+        async: false,
+        dataType: 'json'
+        error: (jqXHR, textStatus, errorThrown) ->
+          console.log "CREATE ORDER AJAX Error: #{textStatus}"
 
-        param_id = item["name"]
-        value = item.value
-        console.log "setting value "+param_id+" -> "+value+" data_id="+data.id
-        $.ajax "/orders/"+data.id+"/product_params/"+param_id,
-          async: false,
-          type: 'PATCH',
-          data: {product_param: { value:  value}},
-          dataType: 'json'
-          error: (jqXHR, textStatus, errorThrown) ->
-            console.log "PATCH ORDER AJAX Error: #{textStatus}"
+        success: (new_order_params, textStatus, jqXHR) ->
+          console.log "get new_order  Successful AJAX call"
+          console.log new_order_params
 
-          success: (data, textStatus, jqXHR) ->
-            console.log "PATHCH ORDER  Successful AJAX call"
+          for item in $("#new-order-ul li.dynamic span input")
+            param_key = item["name"]
+            value = item.value
+            param_id = find_param_id(new_order_params, param_key)
+            console.log "setting value "+param_id+" /"+param_key+"-> "+value+" data_id="+data.id
 
-      window.location = "/pages/browser"
+            $.ajax "/orders/"+data.id+"/product_params/"+param_id,
+              async: false,
+              type: 'PATCH',
+              data: {product_param: { value:  value}},
+              dataType: 'json'
+              error: (jqXHR, textStatus, errorThrown) ->
+                console.log "PATCH ORDER AJAX Error: #{textStatus}"
+
+              success: (data, textStatus, jqXHR) ->
+                console.log "PATHCH ORDER  Successful AJAX call"
+
+#               window.location = "/pages/browser"
 

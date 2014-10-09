@@ -93,6 +93,7 @@ show_param_editor = (prefix, param_name) ->
   $(prefix+"-"+param_name+"-edit").removeClass("hidden")
   $(prefix+"-"+param_name+"-button div.control-butt").removeClass("hidden")
   $(prefix+"-"+param_name+"-button div.edit-butt").addClass("hidden")
+  $(prefix+"-"+param_name+"-entry").focus()
 
 @edit_order_param_handler = (event) ->
   item_clicked = event.toElement

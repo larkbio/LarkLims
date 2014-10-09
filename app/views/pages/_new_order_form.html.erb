@@ -8,7 +8,7 @@
                   <span class="browser-list-cell param-title">Product</span>
                   <span id="order-product-edit" class="browser-list-cell param-edit">
                       <select id="product-name-sel">
-                          <option>ABC</option>
+                          <option></option>
                       </select>
                   </span>
                     <span class="browser-list-cell param-control"></span>
@@ -16,8 +16,8 @@
             </form>
             <form id="new-order-form">
                 <input id="product-id-holder" name="order[product_id]" type="hidden">
-                <% arr_names = [ "comment", "ordered_from", "price", "quantity", "units", "department"]
-                   arr_titles = ["Description", "Ordered from", "Price", "Quantity", "Units", "Ordering department"]
+                <% arr_names = [ "comment", "ordered_from", "price", "quantity", "units", "department", "url"]
+                   arr_titles = ["Description", "Ordered from", "Price", "Quantity", "Units", "Ordering department", "URL"]
                    for i in 0..(arr_names.size-1)
                 %>
                       <li class="browser-list-item">
