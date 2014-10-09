@@ -1,3 +1,12 @@
+@bind_new_order_events = () ->
+  $("#product-name-sel").change ->
+    opt = $(this).find('option:selected');
+    console.log opt
+    product_id = opt.val()
+    add_product_params(product_id)
+
+  $("#new-order-submit-button").click (event) -> new_order_submit_handler(event)
+
 @new_order_handler = (event) ->
   event.preventDefault()
   delete_product_params()
@@ -8,6 +17,7 @@
   $("#users-table").addClass("hidden")
   $("#new-order-table").removeClass("hidden")
   $("#product-name-sel").empty()
+  $("#close-order-table").addClass("hidden")
 
   $.ajax '/products',
     type: 'GET'

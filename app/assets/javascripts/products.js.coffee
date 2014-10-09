@@ -2,6 +2,18 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
+@products_button_handle_click = () ->
+  unselect_menus()
+  $("#products-button").addClass('selected')
+  $("#new-order-table").addClass("hidden")
+  $("#browser-select-all").addClass("hidden")
+  $("#browser-filter-controls").addClass("hidden")
+
+  $("#browser-list-header-tab").removeClass("hidden")
+  $("#products-table").removeClass('hidden')
+  $("#browser-products-header").removeClass("hidden")
+  load_products()
+
 @load_products = ()  ->
   $.ajax '/products',
     type: 'GET'

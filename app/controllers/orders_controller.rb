@@ -41,6 +41,11 @@ class OrdersController < ApplicationController
   # GET /orders/1
   # GET /orders/1.json
   def show
+    if @order.arrival_date
+      @arrival_date = @order.arrival_date.strftime("%Y-%m-%d")
+    else
+      @arrival_date = ""
+    end
   end
 
   # GET /orders/new
@@ -103,6 +108,6 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:price, :quantity, :units, :department, :comment, :url, :ordered_from, :product_id)
+      params.require(:order).permit(:price, :quantity, :units, :department, :comment, :url, :ordered_from, :product_id, :status, :place, :catalog_number, :arrival_date)
     end
 end

@@ -1,3 +1,9 @@
+#close-order-table {
+  margin-top: 0px;
+  padding-top: 20px;
+  border-top: 1px solid #ddd;
+}
+
 #show-order-table {
   margin-top: 0px;
   padding-top: 20px;
@@ -6,6 +12,11 @@
 
 #show-order-table dl.form {
   border-top: 1px solid #ddd;
+}
+
+#close-order-table form {
+  display: table;
+  width: 100%;
 }
 //#show-order-table span {
 //  font-size: 15px;

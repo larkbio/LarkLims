@@ -2,6 +2,21 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
+@users_button_handle_click = () ->
+  unselect_menus()
+  $("#users-button").addClass('selected')
+
+  $("#new-order-table").addClass("hidden")
+  $("#browser-filter-controls").addClass("hidden")
+  $("#browser-products-header").addClass("hidden")
+  $("#browser-select-all").addClass("hidden")
+
+  $("#browser-list-header-tab").removeClass("hidden")
+  $("#users-table").removeClass('hidden')
+  $("#browser-users-header").removeClass("hidden")
+
+  load_users()
+
 @load_users = ()  ->
   $.ajax '/users',
     type: 'GET'

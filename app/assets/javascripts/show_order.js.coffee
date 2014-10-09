@@ -1,3 +1,12 @@
+@bind_show_order_events = () ->
+  $("#show-order-table").delegate( "div.edit-butt", "click", edit_order_param_handler )
+
+  $("#show-order-table").delegate( "button.button.cancel", "click", cancel_order_param_handler )
+
+  $("#show-order-table").delegate( "button.button.save", "click", save_order_param_handler )
+
+  $("#close-order-submit-button").click -> close_order_handler(event)
+
 @show_order_handler = (event) ->
   event.preventDefault()
   $("#paging-row").addClass("hidden")
@@ -10,6 +19,9 @@
 
 @show_order = (order_url) ->
   $("#paging-row").addClass("hidden")
+  $("#new-order-button").addClass("hidden")
+  $("#close-order-table").addClass("hidden")
+
   $.ajax order_url,
     type: 'GET',
     dataType: 'json',
@@ -19,6 +31,10 @@
 
     success: (data, textStatus, jqXHR) ->
       $("#show-order-table li.product-param").remove()
+
+      if data.status==0
+        $("#close-order-table").removeClass("hidden")
+        $("#item-arrival_date").val(get_currdate())
 
       $("#browser-list-header-tab").addClass("hidden")
       $("#orders-table").addClass("hidden")
@@ -53,13 +69,11 @@
             $("#"+newid+" span:nth-child(4)").attr("id", "orderparam-"+item.key+"-button")
 
           $("#show-order-table input.order-id")[0].value = data.id
+          $("#close-order-table input.order-id")[0].value = data.id
           $("#order-product-txt").html(data.product_name)
-          $("#order-comment-txt").html(data.comment)
-          $("#order-ordered_from-txt").html(data.ordered_from)
-          $("#order-price-txt").html(data.price)
-          $("#order-quantity-txt").html(data.quantity)
-          $("#order-units-txt").html(data.units)
-          $("#order-department-txt").html(data.department)
+          for par in ['comment', 'place', 'catalog_number', 'arrival_date', 'ordered_from', 'price', 'quantity', 'units', 'department']
+            $("#order-"+par+"-txt").html(data[par])
+
           shorturl = data.url
           fullurl = data.url
           if shorturl == null
@@ -156,3 +170,22 @@ hide_param_editor = (prefix, param_name) ->
 
       $(prefix+"-"+param_name+"-button div.control-butt").addClass("hidden")
       $(prefix+"-"+param_name+"-button div.edit-butt").removeClass("hidden")
+
+@close_order_handler = (event) ->
+#  item_clicked = event.toElement
+  order_id =  $("#order-id-to-close")[0].value
+  console.log "closing order "+order_id
+
+  values = $("#close-order-form").serialize()
+  $.ajax '/orders/'+order_id,
+    type: 'PUT',
+    data: values,
+    dataType: 'json'
+    error: (jqXHR, textStatus, errorThrown) ->
+      console.log "CREATE ORDER AJAX Error: #{textStatus}"
+
+    success: (data, textStatus, jqXHR) ->
+      console.log "CREATE ORDER  Successful AJAX call"
+      console.log data
+      $("#close-order-form input[type=text]").val("")
+      show_order("/orders/"+order_id)
