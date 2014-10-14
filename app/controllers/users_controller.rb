@@ -30,7 +30,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        if ENV['RAILS_ENV'].to_s == 'production'
+        if ENV['RAILS_ENV'].to_s == 'production' or ENV['RAILS_ENV'].to_s == 'demo'
           UserMailer.register_email(@user)
         end
         format.html { redirect_to login_path, alert: "Account created successfully! Registration is in progress, you will get an email when the account is active" }
@@ -59,7 +59,7 @@ class UsersController < ApplicationController
   def activate
     respond_to do |format|
       if @user.update_attribute(:active, !@user.active)
-        if ENV['RAILS_ENV'].to_s == 'production'
+        if ENV['RAILS_ENV'].to_s == 'production' or ENV['RAILS_ENV'].to_s == 'demo'
           UserMailer.welcome_email(@user)
         end
         format.html {  redirect_to @user, notice: 'User was successfully updated.' }

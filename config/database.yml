@@ -26,3 +26,7 @@ test:
 production:
   <<: *default
   database: larklims_prod
+
+demo:
+  <<: *default
+  database: larklims_demo

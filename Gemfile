@@ -48,7 +48,7 @@ gem 'faker'
 gem 'will_paginate', '~> 3.0'
 gem 'mailgun'
 
-group :production do
+group :production, :demo do
   gem 'rails_12factor', '0.0.2'
 end
 
