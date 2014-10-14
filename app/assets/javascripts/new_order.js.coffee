@@ -120,6 +120,4 @@ find_param_id = ( arr, key) ->
 
               success: (data, textStatus, jqXHR) ->
                 console.log "PATHCH ORDER  Successful AJAX call"
-
-#               window.location = "/pages/browser"
-
+          window.location = "/pages/browser"

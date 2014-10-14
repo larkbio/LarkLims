@@ -99,6 +99,7 @@
   $("#browser-filter-controls").removeClass("hidden")
   load_orders(1)
   $("#paging-row").removeClass("hidden")
+  $("#close-order-table").addClass("hidden")
 
 @load_orders = (page)  ->
   if not page
