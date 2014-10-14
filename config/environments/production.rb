@@ -83,6 +83,7 @@ Rails.application.configure do
 
   MAILGUN_CONFIG = YAML.load_file('/data/.mailgun.conf')[::Rails.env]
   ENV['ADMIN_EADDR'] = MAILGUN_CONFIG['ADMIN_EADDR']
+  ENV['SECRET_KEY_BASE'] = MAILGUN_CONFIG['SECRET_KEY_BASE']
 
   Mailgun.configure do |config|
    config.api_key = MAILGUN_CONFIG['M_KEY']
