@@ -46,6 +46,7 @@ gem 'spreadsheet'
 gem 'faker'
 
 gem 'will_paginate', '~> 3.0'
+gem 'mailgun'
 
 group :production do
   gem 'rails_12factor', '0.0.2'

@@ -81,13 +81,11 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  ActionMailer::Base.smtp_settings = {
-      :port           => ENV['MAILGUN_SMTP_PORT'],
-      :address        => ENV['MAILGUN_SMTP_SERVER'],
-      :user_name      => ENV['MAILGUN_SMTP_LOGIN'],
-      :password       => ENV['MAILGUN_SMTP_PASSWORD'],
-      :domain         => 'larklims-demo.larkbio.com',
-      :authentication => :plain,
-  }
-  ActionMailer::Base.delivery_method = :smtp
+  MAILGUN_CONFIG = YAML.load_file('/data/.mailgun.conf')[::Rails.env]
+  ENV['ADMIN_EADDR'] = MAILGUN_CONFIG['ADMIN_EADDR']
+
+  Mailgun.configure do |config|
+   config.api_key = MAILGUN_CONFIG['M_KEY']
+   config.domain  = MAILGUN_CONFIG['M_DOMAIN']
+ end
 end
