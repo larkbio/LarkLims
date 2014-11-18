@@ -36,7 +36,7 @@
         i = i+1
 
         $("#"+new_id+" label div.lab").addClass("q"+(prod.id % 12))
-        $("#"+new_id+" div a.browser-list-cell-title-link").html(prod.name)
+        $("#"+new_id+" div span.browser-list-cell-title-link").html(prod.name)
 #        $("#"+new_id+" div a.browser-list-cell-title-link").attr("href", "/products/"+prod.id)
         $("#"+new_id+" div div.browser-meta span").html(
             "Product created "+prod.product_age+" ago")

@@ -5,12 +5,12 @@
 
   $("#show-order-table").delegate( "button.button.save", "click", save_order_param_handler )
 
-  $("#close-order-submit-button").click -> close_order_handler(event)
+  $("#close-order-submit-button").click (event) -> close_order_handler(event)
 
 @show_order_handler = (event) ->
   event.preventDefault()
   $("#paging-row").addClass("hidden")
-  a_clicked = event.toElement
+  a_clicked = event.target
   if a_clicked.nodeName == "SPAN"
     a_clicked = a_clicked.parentNode
 
@@ -59,7 +59,7 @@
             copied = $("#param-template-txt li").clone()
             newid = "pp-"+item.id
             copied.attr("id", newid)
-            copied.insertAfter($("#show-order-table div ul.browser-list li:first"))
+            copied.insertAfter($("#show-order-table div ul.browser-list li:nth-child(2)"))
             $("#"+newid+" span.param-title").html(item.name)
             if item.value
               $("#"+newid+" span.param-value").html(item.value)
@@ -71,7 +71,7 @@
           $("#show-order-table input.order-id")[0].value = data.id
           $("#close-order-table input.order-id")[0].value = data.id
           $("#order-product-txt").html(data.product_name)
-          for par in ['comment', 'place', 'catalog_number', 'arrival_date', 'ordered_from', 'price', 'quantity', 'units', 'department']
+          for par in ['comment', 'place', 'catalog_number', 'order_date', 'arrival_date', 'ordered_from', 'price', 'quantity', 'units', 'department']
             $("#order-"+par+"-txt").html(data[par])
 
           shorturl = data.url
@@ -96,7 +96,7 @@ show_param_editor = (prefix, param_name) ->
   $(prefix+"-"+param_name+"-entry").focus()
 
 @edit_order_param_handler = (event) ->
-  item_clicked = event.toElement
+  item_clicked = event.target
   clicked_id =  item_clicked.parentNode.parentNode.id
   id_split = clicked_id.split('-')
   param_name = id_split[1]
@@ -114,7 +114,7 @@ hide_param_editor = (prefix, param_name) ->
   $(prefix+"-"+param_name+"-button div.edit-butt").removeClass("hidden")
 
 @cancel_order_param_handler = (event) ->
-  item_clicked = event.toElement
+  item_clicked = event.target
   clicked_id =  item_clicked.parentNode.parentNode.id
   id_split = clicked_id.split('-')
   param_name = id_split[1]
@@ -126,7 +126,7 @@ hide_param_editor = (prefix, param_name) ->
   hide_param_editor(prefix, param_name)
 
 @save_order_param_handler = (event) ->
-  item_clicked = event.toElement
+  item_clicked = event.target
   clicked_id =  item_clicked.parentNode.parentNode.id
   id_split = clicked_id.split('-')
   param_name = id_split[1]
@@ -173,7 +173,7 @@ hide_param_editor = (prefix, param_name) ->
       $(prefix+"-"+param_name+"-button div.edit-butt").removeClass("hidden")
 
 @close_order_handler = (event) ->
-#  item_clicked = event.toElement
+#  item_clicked = event.target
   order_id =  $("#order-id-to-close")[0].value
   console.log "closing order "+order_id
 

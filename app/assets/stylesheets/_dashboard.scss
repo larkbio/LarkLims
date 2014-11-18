@@ -14,7 +14,7 @@
   display: block;
   overflow: hidden;
   width: 100%;
-  font-size: 20px;
+  font-size: 12px;
   font-style: normal;
   font-weight: 300;
   line-height: 24px;
@@ -78,6 +78,16 @@
 .body {
   font: 13px/1.4 Helvetica, arial, freesans, clean, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
   color: #333333;
+}
+
+.body div {
+  text-align: left;
+}
+.body i.fa-check {
+  color: #60b044;
+}
+.body i.fa-plus {
+  color: #4183c4;
 }
 
 .activity-icon {

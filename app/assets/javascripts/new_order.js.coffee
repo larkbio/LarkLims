@@ -62,7 +62,7 @@
         new_id =  "par-" + i
         new_param.attr('id', new_id)
 
-        new_param.insertAfter($("#new-order-ul li:first"))
+        new_param.insertAfter($("#new-order-ul li:nth-child(3)"))
         $("#"+new_id+" span:first").html(param.name)
         $("#"+new_id+" span:nth-child(2) input").attr('id', new_id+"-input")
         $("#"+new_id+" span:nth-child(2) input").attr('name', param.key)

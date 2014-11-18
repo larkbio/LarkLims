@@ -205,7 +205,17 @@ a.browser-list-cell-title-link {
   line-height: 1.2;
   word-break: break-word;
 }
-
+span.browser-list-cell-title-link {
+  text-decoration: none;
+  display: inline-block;
+  margin-bottom: 2px;
+  padding-right: 3px;
+  font-size: 15px;
+  font-weight: bold;
+  color: #333 !important;
+  line-height: 1.2;
+  word-break: break-word;
+}
 .browser-list-cell-checkbox {
   width: 30px;
   padding-left: 0;

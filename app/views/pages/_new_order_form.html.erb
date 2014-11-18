@@ -3,7 +3,7 @@
         <h3>New order</h3>
 
         <ul id="new-order-ul" class="browser-list">
-            <form>
+            <form id="new-order-form">
                 <li class="browser-list-item">
                   <span class="browser-list-cell param-title">Product</span>
                   <span id="order-product-edit" class="browser-list-cell param-edit">
@@ -13,11 +13,10 @@
                   </span>
                     <span class="browser-list-cell param-control"></span>
                </li>
-            </form>
-            <form id="new-order-form">
+
                 <input id="product-id-holder" name="order[product_id]" type="hidden">
                 <% arr_names = [ "comment", "ordered_from", "price", "quantity", "units", "department", "url"]
-                   arr_titles = ["Description", "Ordered from", "Price", "Quantity", "Units", "Ordering department", "URL"]
+                   arr_titles = ["Order name", "Ordered from", "Price", "Quantity", "Units", "Ordering department", "URL"]
                    for i in 0..(arr_names.size-1)
                 %>
                       <li class="browser-list-item">

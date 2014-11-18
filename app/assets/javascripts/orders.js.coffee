@@ -191,7 +191,7 @@
 @userfilter_clicked_handler = () ->
   console.log "userfilter_clicked_handler()"
   event.preventDefault()
-  a_clicked = event.toElement
+  a_clicked = event.target
   owner_id = a_clicked.id.split("-")[3]
   console.log "filtering for user: "+owner_id
   $("#order-user-filter")[0].value = owner_id
@@ -208,7 +208,7 @@
     $("#browser-select-controls").addClass("hidden")
 
 @order_selected = (event) ->
-  item_clicked = event.toElement
+  item_clicked = event.target
   if item_clicked.checked
     $("#browser-filter-controls").addClass("hidden")
     $("#browser-select-controls").removeClass("hidden")

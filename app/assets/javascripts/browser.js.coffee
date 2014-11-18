@@ -33,11 +33,10 @@
 
 @get_currdate = () ->
   today = new Date()
-  dd = today.getDate()
-  mm = today.getMonth()+1
+  dd = ('0'+today.getDate()).substr(-2)
+  mm = ('0'+(today.getMonth()+1)).substr(-2)
   yyyy = today.getFullYear()
-  if dd<10
-    dd = '0'+dd
-  if mm < 10
-    mm = '0'+mm
-  return (yyyy+'/'+mm+'/'+dd)
+  hh = ('0'+today.getHours()).substr(-2)
+  mins = ('0'+today.getMinutes()).substr(-2)
+  secs = ('0'+today.getSeconds()).substr(-2)
+  return (yyyy+'-'+mm+'-'+dd+' '+hh+':'+mins+':'+secs)

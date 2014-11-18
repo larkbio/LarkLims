@@ -41,8 +41,9 @@ class OrdersController < ApplicationController
   # GET /orders/1
   # GET /orders/1.json
   def show
+    @order_date = @order.order_date.strftime("%Y-%m-%d %H:%M:%S")
     if @order.arrival_date
-      @arrival_date = @order.arrival_date.strftime("%Y-%m-%d")
+      @arrival_date = @order.arrival_date.strftime("%Y-%m-%d %H:%M:%S")
     else
       @arrival_date = ""
     end
