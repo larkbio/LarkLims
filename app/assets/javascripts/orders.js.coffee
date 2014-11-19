@@ -157,8 +157,8 @@
         $("#"+new_id+" div a.browser-list-cell-title-link").html(status_icon+order.comment+" <span class=\"product-label qb"+(order.product_id % 12)+"\">"+order.product_name+"</span>")
         $("#"+new_id+" div a.browser-list-cell-title-link").attr("href", "/orders/"+order.id)
 
-        $("#"+new_id+" div div.browser-meta span").html(
-            "Ordered "+order.order_age+" ago by <a id='"+new_id+"-owner-"+order.owner_id+"' class=\"user-filter-link\" href='#'>"+order.owner+"</a>")
+        meta_det = "Ordered on "+order.order_date_fmt+" by <a id='"+new_id+"-owner-"+order.owner_id+"' class=\"user-filter-link\" href='#'>"+order.owner+"</a>"
+        $("#"+new_id+" div div.browser-meta span").html(meta_det  )
 
       $("ul#orders-table").delegate("a.user-filter-link", "click", userfilter_clicked_handler)
 

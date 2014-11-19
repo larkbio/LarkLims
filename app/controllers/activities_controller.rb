@@ -67,7 +67,16 @@ class ActivitiesController < ApplicationController
       end
       title = "<a href=\"/pages/browser?user_filter=#{o.user.id}\">#{o.user.name}</a>\n<span>added order</span>\n<a href=\"/pages/browser?order_selected=#{o.id}\">#{o.comment}</a> (#{o.product.name})\n"
       detail = "From: #{o.ordered_from} <a href=\"#{o.url}\" target=\"_blank\">#{url_short}</a>"
-      result.append({:date => o.order_date ,:timediff => time_ago_in_words( o.order_date),
+
+      odate = ""
+      if o.order_date
+        odate = o.order_date.strftime("%Y-%m-%d %H:%M:%S")
+      end
+      adate = ""
+      if o.arrival_date
+        adate = o.arrival_date.strftime("%Y-%m-%d %H:%M:%S")
+      end
+      result.append({:odate=> odate, :adate => adate ,:timediff => time_ago_in_words( o.order_date),
                          :activity_title => title, :activity_detail => detail,
                          :activity_icon => "fa-plus", :order_id => o.id,
                          :status => 0})
@@ -99,7 +108,19 @@ class ActivitiesController < ApplicationController
       detail = "Cat: #{o.catalog_number}, Place: #{o.place}"
       opath = order_url(o)
       title = "<span>order</span>\n<a href=\"/pages/browser?order_selected=#{o.id}\">#{o.comment}</a> (#{o.product.name})\n<span>arrived</span>\n"
-      result.append({:date => o.arrival_date ,:timediff => time_ago_in_words( o.arrival_date),
+      arr = ""
+      if o.arrival_date
+        arr = time_ago_in_words( o.arrival_date)
+      end
+      odate = ""
+      if o.order_date
+        odate = o.order_date.strftime("%Y-%m-%d %H:%M:%S")
+      end
+      adate = ""
+      if o.arrival_date
+        adate = o.arrival_date.strftime("%Y-%m-%d %H:%M:%S")
+      end
+      result.append({ :odate=> odate, :adate => adate, :timediff => arr,
                          :activity_title => title, :activity_detail => detail,
                          :activity_icon => "fa-check", :order_id => o.id,
                          :status => 1})

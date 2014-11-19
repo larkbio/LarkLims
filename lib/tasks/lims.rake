@@ -194,4 +194,59 @@ namespace :lims do
       # end
   end
 
+  task import_xls: :environment do
+      require 'spreadsheet'
+      path = Rails.root.join('public', 'data', "real.xls")
+
+      workbook = Spreadsheet.open(path)
+      prod_hash = {}
+      pparr = Array.new
+      oparr = Array.new
+      oarr = Array.new
+
+      sheet = workbook.worksheet(0)
+      rownum = 0
+      sheet.each do |row|
+        if rownum==0
+          rownum = rownum+1
+          next
+        end
+        p = Product.where("name = '#{row[2]}'").first
+
+        url = nil
+        oname = row[1]
+        if row[1].start_with?("http")
+          oname = ""
+          url = row[1]
+        end
+        st = 0
+        if row[12]
+          st = 1
+        end
+        o = Order.new({
+        "order_date"    => row[0],
+        "catalog_number"=> row[4],
+        "price"         => row[6],
+        "quantity"      => row[10],
+        "units"         => row[5],
+        "department"    => "",
+        "comment"       => oname,
+        "url"           => url,
+        "ordered_from"  => row[3],
+        "status"        => st,
+        "arrival_date"  => row[12],
+        # "place"         => "",
+        "product_id"    => p.id,
+        # "created_at"    => "",
+        # "updated_at"    => "",
+        "user_id"       => 1,
+        "contact"       => row[13],
+        "note"          => row[14]
+                      })
+        puts o.inspect
+        o.save!
+      end
+  end
+
+
 end

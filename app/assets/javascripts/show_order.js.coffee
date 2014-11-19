@@ -71,7 +71,7 @@
           $("#show-order-table input.order-id")[0].value = data.id
           $("#close-order-table input.order-id")[0].value = data.id
           $("#order-product-txt").html(data.product_name)
-          for par in ['comment', 'place', 'catalog_number', 'order_date', 'arrival_date', 'ordered_from', 'price', 'quantity', 'units', 'department']
+          for par in ['comment', 'place', 'catalog_number', 'order_date', 'arrival_date', 'ordered_from', 'price', 'quantity', 'units', 'department', 'note', 'contact']
             $("#order-"+par+"-txt").html(data[par])
 
           shorturl = data.url

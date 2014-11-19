@@ -26,7 +26,7 @@
           newactivity.insertAfter($("div#activity-list").children().last())
 
         $("#"+newid+" i").addClass(act['activity_icon'])
-        $("#"+newid+" div div.activity-time span").html(act['timediff']+' ago')
+        $("#"+newid+" div div.activity-time span").html(act['odate'])
         $("#"+newid+" div div.activity-title").html(act['activity_title'])
         $("#"+newid+" div div.activity-details span").html(act['activity_detail'])
         i += 1
@@ -57,7 +57,7 @@
         newactivity.insertBefore($("#activity-list div#progress-sign"))
 
         $("#"+newid+" i").addClass(act['activity_icon'])
-        $("#"+newid+" div div.activity-time span").html(act['timediff']+' ago')
+        $("#"+newid+" div div.activity-time span").html(act['odate'])
         $("#"+newid+" div div.activity-title").html(act['activity_title'])
         $("#"+newid+" div div.activity-details span").html(act['activity_detail'])
         i += 1
