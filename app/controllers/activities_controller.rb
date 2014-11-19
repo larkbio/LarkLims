@@ -39,7 +39,7 @@ class ActivitiesController < ApplicationController
   end
 
   def get_create_activities(lim, before_date, after_order_id)
-    if before_date
+    if before_date and before_date!=""
       if after_order_id
         before1 = DateTime.parse(before_date)-1.second
         before2 = DateTime.parse(before_date)+1.second

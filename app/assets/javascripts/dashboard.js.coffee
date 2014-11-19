@@ -2,7 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-@activity_limit = 20
+@activity_limit = 40
 
 @load_activities = ()  ->
   $.ajax '/activities/index?limit='+@activity_limit,
@@ -96,8 +96,8 @@ scroll_handler = (event) ->
   load_activities()
   @last_top = 0
   @timeout_id = null
-  $(document).scroll (event) ->
-    if @timeout_id
-      clearTimeout(@timeout_id)
-    @timeout_id = setTimeout( scroll_handler, 100)
+#  $(document).scroll (event) ->
+#    if @timeout_id
+#      clearTimeout(@timeout_id)
+#    @timeout_id = setTimeout( scroll_handler, 100)
 
